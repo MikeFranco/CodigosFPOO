@@ -11,20 +11,20 @@ using namespace std;
 
 int main(){
 
-  int altura;
-  float volumen, diametro, pi=3.14159265358979323846;
+  float altura, volumen, diametro, pi=3.14159265358979323846;
 
-  cout<<"ingresar altura: "; cin>>altura;
-  cout<<"ingresar diametro: "; cin>>diametro;
-  cout<<("la altura mide: ") <<altura <<(" y el radio mide: ") <<diametro/2 <<endl;
+  cout<<"ingresar altura en metros: "; cin>>altura;
+  cout<<"ingresar diametro en metros: "; cin>>diametro;
+  cout<<("la altura mide: ") <<altura <<" metros" <<(" y el radio mide: ") <<diametro/2 <<" metros" <<endl;
   volumen = (pi * ((diametro/2)*(diametro/2)) * altura);
-  cout<<("El volumen de su cubeta es: ") <<setprecision(3) <<volumen <<(" cm^3\n");
-  float vaciado = volumen;
-  vaciado == 20.0
+  cout<<("El volumen de su cubeta es: ") <<setprecision(4) <<volumen <<(" m^3\n");
+  int litros = volumen*1000;
+  cout<<"la cubeta tiene: " <<litros <<" litros" <<endl;
+  litros == 20.0
     ? cout<<"La cubeta se vacía en 40 segundos"<<endl
-    : vaciado < 30
-      ? cout<<"La cubeta se vacia en: " <<vaciado*2 <<" segundos\n"
-      : cout<<"La cubeta se vacía en: " <<setprecision(3) <<(vaciado*2)/60 <<" minutos" <<endl;
+    : litros < 30
+      ? cout<<"La cubeta se vacia en: " <<litros*2 <<" segundos\n"
+      : cout<<"La cubeta se vacía en: " <<setprecision(3) <<(litros*2)/60 <<" minutos" <<endl;
   return 0;
 
 }

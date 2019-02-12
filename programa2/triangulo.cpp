@@ -20,7 +20,7 @@ int main(){
   float aux = (s*(s-lado1)*(s-lado2)*(s-lado3));
   area = sqrt(aux);
   area <= 0 || isnan(area)
-    ? cout<<"el resultado es un numero imaginario, favor de "<<endl
+    ? cout<<"el area es un numero imaginario "<<endl
     : cout<<"el area del triangulo es: " <<setprecision(3) <<area <<endl;
   return 1;
 
