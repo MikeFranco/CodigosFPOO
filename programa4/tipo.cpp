@@ -10,8 +10,8 @@ int volverIngresarLado();
 int cambiarStringAInt(string);
 int validarTriangulo(int, int, int);
 int validarLength(string);
-string error();
 int valido();
+string error();
 
 int main(){
 
@@ -89,10 +89,7 @@ int tipoTriangulo(int lado1, int lado2, int lado3){
   lado2==lado3 ? iguales++ : iguales;
   lado1==lado3 ? iguales++ : iguales;
   return iguales;
-  //a=b ? iguales++ : a=c ? iguales++ : b=c ? iguales++
 }
-
-
 
 string error(){
   return "No se ha podido leer el numero correctamente\n";
@@ -102,8 +99,3 @@ int valido(){
   cout<<"el dato ingresado si es menor\n";
   return 0;
 }
-
-
-/* g++ -o <nombre-exe> <nombreprograma>.cpp
-
-./<nombre-exe> */
