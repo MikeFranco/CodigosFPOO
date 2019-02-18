@@ -1,3 +1,8 @@
+/*
+  Autor: Miguel Angel Franco Peza
+  Secuencia: 2NM22
+*/
+
 #include <iostream>
 #include <cmath>
 #include <string>
