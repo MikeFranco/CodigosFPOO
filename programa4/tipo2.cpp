@@ -2,8 +2,6 @@
   Autor: Miguel Angel Franco Peza
   Secuencia: 2NM22
 */
-//el cero no es valido, por qué?
-//checar los negativos
 
 #include <iostream>
 #include <cmath>
@@ -29,7 +27,6 @@ int main(){
 
   cout<<"Ingrese el lado 1: "; cin>>lado1;
   if(validarLado(lado1)==1 && validarLength(lado1)==1) newLado1=cambiarStringAInt(lado1); else newLado1=volverIngresarLado();
-  //if(newLado1<=0) newLado1=volverIngresarLado();
 
   cout<<"\nIngrese el lado 2: "; cin>>lado2;
   if(validarLado(lado2)==1 && validarLength(lado2)==1) newLado2=cambiarStringAInt(lado2); else newLado2=volverIngresarLado();
@@ -59,11 +56,10 @@ bool validarLado(string lado){
   int valido=0;
 
   for(int i=0;i<lado.size();i++){
-    if(isdigit(lado[i])) {return valido=1;break;}
+
+    if(isdigit(lado[i])) {valido=1;break;}
 
   }
-  //return valido
-  //checar la validacion para regresar un 1
   valido==0 ? cout<<"El valor ingresado no es un valor aritmetico\n" : cout<<"";
   return valido;
 
@@ -82,8 +78,10 @@ int validarTriangulo(int lado1, int lado2, int lado3){
 
 int cambiarStringAInt(string lado){
   int newLado = atoi(lado.c_str());
+  cout<<newLado<<endl;
   newLado <= 0 ? volverIngresarLado() : newLado;
-  //(newLado <= 0) ? cout<<"El dato ingresado no es valido\n" : cout<<"\tValor del numero ingresado->"<<newLado<<endl;
+  return newLado;
+  //(newLado <= 0) ? cout<<"El dato ingresado no es valido\n" : cout<<"\tEl dato ingresado si es valido\n";
   return newLado;
 }
 
@@ -102,7 +100,7 @@ int volverIngresarLado(){
     cout<<"\nIngrese de nuevo el lado: "; cin>>lado;
     if(validarLado(lado)==1 && validarLength(lado)==1) {
       newLado=cambiarStringAInt(lado);
-      newLado<=0 ? volverIngresarLado(): bandera=1;
+      bandera=1;
 
     } else cout<<"Favor de revisar las instrucciones\n";
   }

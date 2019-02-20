@@ -43,3 +43,4 @@
 <img alt="PNG" src="./codigofunciona.png"/>
 
 <h1>Nombre del Tester:</h1>
+<h3>Cuautle González Kiara</h3>
