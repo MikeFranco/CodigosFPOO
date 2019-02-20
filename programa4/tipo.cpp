@@ -23,7 +23,6 @@ int main(){
   string lado1, lado2, lado3;
   int newLado1, newLado2, newLado3;
   cout<<"\n\n\t\t\t==== Programa que dice tu tipo de triangulo segun sus lados ====\n";
-  cout<<"\nInstrucciones para un buen funcionamiento del programa:\n";
   instrucciones();
 
   cout<<"Ingrese el lado 1: "; cin>>lado1;
@@ -48,8 +47,9 @@ int main(){
 }
 
 int instrucciones(){
-  cout<<"\t\tIngresar un numero menor a 10 digitos\n";
-  cout<<"\t\tIngresar unicamente numeros\n\n";
+  cout<<"\nInstrucciones para un buen funcionamiento del programa:\n";
+  cout<<"\t\t*Ingresar un numero menor a 10 digitos\n";
+  cout<<"\t\t*Ingresar unicamente numeros\n\n";
 }
 
 bool validarLado(string lado){
