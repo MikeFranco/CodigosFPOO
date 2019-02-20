@@ -3,6 +3,8 @@
   Secuencia: 2NM22
 */
 
+
+//CHECAR LA VALIDACION, SI HAY LETRAS QUE NO MANDE EL NUMERO CORRECTAMENTE
 #include <iostream>
 #include <cmath>
 #include <string>
@@ -37,14 +39,14 @@ int main(){
 
   int valido = validarTriangulo(newLado1, newLado2, newLado3);
   int verTipoTriangulo = tipoTriangulo(newLado1, newLado2, newLado3);
-  verTipoTriangulo>=0 && valido==1 ? cout<<"\n\n\nCalculando tipo de triangulo...\n" :cout<<"";
+
   verTipoTriangulo==3 && valido==1
     ? cout<<"\nTu triangulo es un equilatero\n\n"
     : verTipoTriangulo==1 && valido==1
       ? cout<<"\nTu triangulo es un isoceles\n\n"
       : verTipoTriangulo==0 && valido==1
         ? cout<<"\nTu triangulo es un escaleno\n\n"
-        : cout<<"Favor de contactar a Atencion al Cliente al numero: 5555555";
+        : cout<<"NO ES UN TRIANGULO"<<endl;
 }
 
 int instrucciones(){
@@ -57,10 +59,10 @@ bool validarLado(string lado){
 
   for(int i=0;i<lado.size();i++){
 
-    if(isdigit(lado[i])) valido=1;break;
+    if(isdigit(lado[i])) {valido=1;break;}
 
   }
-  valido==0 ? cout<<"El valor ingresado no contiene del todo numeros\n" : cout<<"";
+  valido==0 ? cout<<"El valor ingresado no es un valor aritmetico\n" : cout<<"";
   return valido;
 
 }
@@ -85,7 +87,7 @@ int cambiarStringAInt(string lado){
 int validarLength(string lado){
   bool bandera=0;
   lado.length() < 10 ? bandera=1 : bandera=0;
-  bandera == 1 ? cout<<"" : cout<<"el dato ingresado es mayor a 10, favor de ingresar uno menor\n";
+  bandera == 1 ? cout<<"" : cout<<"el dato ingresado es mayor o igual a 10, favor de ingresar uno menor\n";
   return bandera;
 }
 
@@ -109,7 +111,9 @@ int tipoTriangulo(int lado1, int lado2, int lado3){
   lado1==lado2 ? iguales++ : iguales;
   lado2==lado3 ? iguales++ : iguales;
   lado1==lado3 ? iguales++ : iguales;
+  cout<<iguales<<endl;
   return iguales;
+
 }
 
 int valido(){
