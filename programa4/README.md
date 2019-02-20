@@ -30,5 +30,5 @@
 | zebra stripes      | are neat                  |    $1                  |
 <!-- ![Alt text](relative/path/to/img.jpg?raw=true "Title") -->
   <h1>Pantalla con el código funcionando</h1>
-  <img alt="PNG" src="/codigofunciona.png"/>
+  <img alt="PNG" src="./codigofunciona.png"/>
   <h1>Nombre del Tester:</h1>
