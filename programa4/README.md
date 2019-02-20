@@ -1,4 +1,4 @@
-<!-- ![Image of Interfaz]( "Optional Title") -->
+
 <dl>
   <h1>Nombre del Alumno:</h1>
   <h3>Miguel Angel Franco Peza</h3>
@@ -28,23 +28,7 @@
 | col 3 is           | right-aligned             | $1600                  |
 | col 2 is           | centered                  |   $12                  |
 | zebra stripes      | are neat                  |    $1                  |
-
-<dl>
+<!-- ![Alt text](relative/path/to/img.jpg?raw=true "Title") -->
   <h1>Pantalla con el código funcionando</h1>
-
+  <img alt="PNG" src="/codigofunciona.png"/>
   <h1>Nombre del Tester:</h1>
-</dl>
-
-
-<!-- Fundamentos de Programación Orientada a Objetos
-##Fecha: 
-20 de Febrero del 2018
-#Secuencia:
-2NM22
-#Número de Trabajo:
-4
-#Requerimiento:
-Saber el tipo de triangulo a partir de los lados dados por el cliente
-
-
-# -->

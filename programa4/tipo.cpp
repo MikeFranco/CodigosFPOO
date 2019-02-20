@@ -3,8 +3,6 @@
   Secuencia: 2NM22
 */
 
-
-//CHECAR LA VALIDACION, SI HAY LETRAS QUE NO MANDE EL NUMERO CORRECTAMENTE
 #include <iostream>
 #include <cmath>
 #include <string>
@@ -24,7 +22,7 @@ int main(){
 
   string lado1, lado2, lado3;
   int newLado1, newLado2, newLado3;
-  cout<<"\n\n\t\t==== Programa que dice tu tipo de triangulo segun sus lados ====\n";
+  cout<<"\n\n\t\t\t==== Programa que dice tu tipo de triangulo segun sus lados ====\n";
   cout<<"\nInstrucciones para un buen funcionamiento del programa:\n";
   instrucciones();
 
@@ -43,10 +41,10 @@ int main(){
   verTipoTriangulo==3 && valido==1
     ? cout<<"\nTu triangulo es un equilatero\n\n"
     : verTipoTriangulo==1 && valido==1
-      ? cout<<"\nTu triangulo es un isoceles\n\n"
+      ? cout<<"\nTu triangulo es un isosceles\n\n"
       : verTipoTriangulo==0 && valido==1
         ? cout<<"\nTu triangulo es un escaleno\n\n"
-        : cout<<"NOo es un triangulo"<<endl;
+        : cout<<"No es un triangulo"<<endl;
 }
 
 int instrucciones(){
@@ -101,7 +99,7 @@ int volverIngresarLado(){
       newLado=cambiarStringAInt(lado);
       bandera=1;
 
-    } else cout<<"Favor de revisar las instrucciones";
+    } else cout<<"Favor de revisar las instrucciones\n";
   }
   return newLado;
 }
