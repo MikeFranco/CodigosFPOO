@@ -46,7 +46,7 @@ int main(){
       ? cout<<"\nTu triangulo es un isoceles\n\n"
       : verTipoTriangulo==0 && valido==1
         ? cout<<"\nTu triangulo es un escaleno\n\n"
-        : cout<<"NO ES UN TRIANGULO"<<endl;
+        : cout<<"NOo es un triangulo"<<endl;
 }
 
 int instrucciones(){
@@ -111,7 +111,6 @@ int tipoTriangulo(int lado1, int lado2, int lado3){
   lado1==lado2 ? iguales++ : iguales;
   lado2==lado3 ? iguales++ : iguales;
   lado1==lado3 ? iguales++ : iguales;
-  cout<<iguales<<endl;
   return iguales;
 
 }
