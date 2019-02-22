@@ -16,7 +16,6 @@ int volverIngresarLado();
 int cambiarStringAInt(string);
 int validarTriangulo(int, int, int);
 int validarLength(string);
-int valido();
 
 int main(){
 
@@ -78,11 +77,9 @@ int validarTriangulo(int lado1, int lado2, int lado3){
 
 int cambiarStringAInt(string lado){
   int newLado = atoi(lado.c_str());
-  cout<<newLado<<endl;
-  newLado <= 0 ? volverIngresarLado() : newLado;
+  newLado <= 0 ? newLado=volverIngresarLado() : newLado;
   return newLado;
-  //(newLado <= 0) ? cout<<"El dato ingresado no es valido\n" : cout<<"\tEl dato ingresado si es valido\n";
-  return newLado;
+
 }
 
 int validarLength(string lado){
@@ -90,6 +87,7 @@ int validarLength(string lado){
   lado.length() < 10 ? bandera=1 : bandera=0;
   bandera == 1 ? cout<<"" : cout<<"el dato ingresado es mayor o igual a 10, favor de ingresar uno menor\n";
   return bandera;
+
 }
 
 int volverIngresarLado(){
@@ -114,9 +112,4 @@ int tipoTriangulo(int lado1, int lado2, int lado3){
   lado1==lado3 ? iguales++ : iguales;
   return iguales;
 
-}
-
-int valido(){
-  cout<<"el dato ingresado si es menor\n";
-  return 0;
 }
