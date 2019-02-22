@@ -43,12 +43,14 @@ int main(){
       : verTipoTriangulo==0 && valido==1
         ? cout<<"\nTu triangulo es un escaleno\n\n"
         : cout<<"No es un triangulo"<<endl;
+
 }
 
 int instrucciones(){
   cout<<"\nInstrucciones para un buen funcionamiento del programa:\n";
   cout<<"\t\t*Ingresar un numero menor a 10 digitos\n";
   cout<<"\t\t*Ingresar unicamente numeros\n\n";
+
 }
 
 bool validarLado(string lado){
