@@ -5,24 +5,27 @@ using namespace std;
 int instrucciones();
 bool validarCalif(string);
 int volverAIngresarCalificacion();
-int cambiarStringAInt(string);
+float cambiarStringAInt(string);
 int validarLength(string);
+int calificacionFinal;
 
 
 int main(){
   string calif1string, calif2string, calif3string;
-  int calif1num, calif2num, calif3num;
+  float calif1num, calif2num, calif3num;
   cout<<"\n\t\t¿Cuál es tu calificación final del semestre?\n\n";
   instrucciones();
 
   cout<<"¿Cuál fue tu calificación del primer parcial? "; cin>>calif1string;
-  if(validarCalif(calif1string)==1 && validarLength(calif1string)==1) calif1num=cambiarStringAInt(calif1string); else calif1num=volverAIngresarCalificacion();
+  validarCalif(calif1string)==1 && validarLength(calif1string)==1 ? calif1num=cambiarStringAInt(calif1string) : calif1num=volverAIngresarCalificacion();
 
   cout<<"\n¿Cuál fue tu calificación del segundo parcial? "; cin>>calif2string;
-  if(validarCalif(calif2string)==1 && validarLength(calif2string)==1) calif2num=cambiarStringAInt(calif2string); else calif2num=volverAIngresarCalificacion();
+  validarCalif(calif2string)==1 && validarLength(calif2string)==1 ? calif2num=cambiarStringAInt(calif2string) : calif2num=volverAIngresarCalificacion();
 
   cout<<"\n¿Cuál fue tu calficación del tercer parcial? "; cin>>calif3string;
-  if(validarCalif(calif3string)==1 && validarLength(calif3string)==1) calif3num=cambiarStringAInt(calif3string); else calif3num=volverAIngresarCalificacion();
+  validarCalif(calif3string)==1 && validarLength(calif3string)==1 ? calif3num=cambiarStringAInt(calif3string) : calif3num=volverAIngresarCalificacion();
+
+
 
 }
 
@@ -37,7 +40,7 @@ bool validarCalif(string calificacion){
 
   for(int i=0;i<calificacion.size();i++){
     cout<<calificacion[i]<<endl;
-    if(isdigit(calificacion[i])) {valido=1; break;}
+    if(isdigit(calificacion[i]) && calificacion[i]==".") {valido=1; break;}
 
   }
   valido==0 ? cout<<"El valor ingresado no es un valor aritmetico\n" : cout<<"";
@@ -53,8 +56,8 @@ int validarLength(string calificacion){
 
 }
 
-int cambiarStringAInt(string calificacion){
-  int newCalif = atoi(calificacion.c_str());
+float cambiarStringAInt(string calificacion){
+  float newCalif = atof(calificacion.c_str());
   cout<<newCalif;
   newCalif >= 11 ? newCalif=volverAIngresarCalificacion() : newCalif;
   return newCalif;

@@ -25,13 +25,13 @@ int main(){
   instrucciones();
 
   cout<<"Ingrese el lado 1: "; cin>>lado1;
-  if(validarLado(lado1)==1 && validarLength(lado1)==1) newLado1=cambiarStringAInt(lado1); else newLado1=volverIngresarLado();
+  validarLado(lado1)==1 && validarLength(lado1)==1 ? newLado1=cambiarStringAInt(lado1) : newLado1=volverIngresarLado();
 
   cout<<"\nIngrese el lado 2: "; cin>>lado2;
-  if(validarLado(lado2)==1 && validarLength(lado2)==1) newLado2=cambiarStringAInt(lado2); else newLado2=volverIngresarLado();
+  validarLado(lado2)==1 && validarLength(lado2)==1 ? newLado2=cambiarStringAInt(lado2) : newLado2=volverIngresarLado();
 
   cout<<"\nIngrese el lado 3: "; cin>>lado3;
-  if(validarLado(lado2)==1 && validarLength(lado3)==1) newLado3=cambiarStringAInt(lado3); else newLado3=volverIngresarLado();
+  validarLado(lado2)==1 && validarLength(lado3)==1 ? newLado3=cambiarStringAInt(lado3) : newLado3=volverIngresarLado();
 
   int valido = validarTriangulo(newLado1, newLado2, newLado3);
   int verTipoTriangulo = tipoTriangulo(newLado1, newLado2, newLado3);
