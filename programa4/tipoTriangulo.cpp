@@ -36,6 +36,7 @@ int main(){
   int valido = validarTriangulo(newLado1, newLado2, newLado3);
   int verTipoTriangulo = tipoTriangulo(newLado1, newLado2, newLado3);
 
+  cout<<"El primer lado es: "<<newLado1<<endl;
   verTipoTriangulo==3 && valido==1
     ? cout<<"\nTu triangulo es un equilatero\n\n"
     : verTipoTriangulo==1 && valido==1
