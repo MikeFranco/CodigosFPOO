@@ -15,6 +15,7 @@ int volverIngresarCantidad();
 int cambiarStringAInt(string);
 int validarMenor6000(int);
 int validarLength(string);
+int regresarCambio(int);
 
 int main(){
 
@@ -28,11 +29,11 @@ int main(){
     ? montoUsrInt=cambiarStringAInt(montoUsr)
     : montoUsrInt=volverIngresarCantidad();
   
-  
-  //int valido = validarMenor6000(montoUsrInt);
-  //int verTipoTriangulo = tipoTriangulo(montoUsrInt);
-  //valido == 1 ? cout<<"si es menor o igual a 6000" : cout<<"no es menor a 6000";
-
+  int valido = validarMenor6000(montoUsrInt);
+  valido == 1 ? cout<<"si es menor o igual a 6000" : cout<<"no es menor a 6000\n";
+  regresarCambio(montoUsrInt);
+  int quinientos=regresarCambio(montoUsrInt);
+  cout<<"\nhay "<<quinientos<<" de $500\n";
 
 }
 
@@ -56,13 +57,13 @@ bool validarCantidad(string lado){
 
 }
 
-/* int validarMenor6000(int cantidad){
+int validarMenor6000(int cantidad){
   int bandera;
   cantidad <= 6000
     ? bandera=1
     : bandera=0;
   return bandera;
-} */
+}
 
 int cambiarStringAInt(string cantidad){
   int monto = atoi(cantidad.c_str());
@@ -95,4 +96,14 @@ int volverIngresarCantidad(){
   return montoInt;
 }
 
+int regresarCambio(int monto){
+  int quinientos, cien, cincuenta, diez, cinco, uno;
+  int division;
+  for(int i=0; i<monto; i++){
+    division=monto%500;
+    if(division == 0) quinientos++;
+    else break;
+  }
+  return quinientos;
+}
 
