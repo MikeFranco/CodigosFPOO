@@ -11,9 +11,9 @@ using namespace std;
 
 int instrucciones();
 bool validarCantidad(string);
-int volerIngresarCantidad();
+int volverIngresarCantidad();
 int cambiarStringAInt(string);
-int validadrMenor6000(int);
+int validarMenor6000(int);
 int validarLength(string);
 
 int main(){
@@ -24,11 +24,14 @@ int main(){
   instrucciones();
 
   cout<<"Ingrese la cantidad que desee cambiar: "; cin>>montoUsr;
-  validarCantidad(montoUsr)==1 && validarLength(montoUsr)==1 ? montoUsrInt=cambiarStringAInt(montoUsr) : montoUsrInt=volerIngresarCantidad();
-
-  int valido = validadrMenor6000(montoUsrInt);
+  validarCantidad(montoUsr)==1 && validarLength(montoUsr)==1
+    ? montoUsrInt=cambiarStringAInt(montoUsr)
+    : montoUsrInt=volverIngresarCantidad();
+  
+  
+  //int valido = validarMenor6000(montoUsrInt);
   //int verTipoTriangulo = tipoTriangulo(montoUsrInt);
-  valido == 1 ? cout<<"si es menor a 6000" : cout<<"no es menor a 6000";
+  //valido == 1 ? cout<<"si es menor o igual a 6000" : cout<<"no es menor a 6000";
 
 
 }
@@ -53,17 +56,18 @@ bool validarCantidad(string lado){
 
 }
 
-int validadrMenor6000(int cantidad){
+/* int validarMenor6000(int cantidad){
   int bandera;
   cantidad <= 6000
     ? bandera=1
     : bandera=0;
   return bandera;
-}
+} */
 
 int cambiarStringAInt(string cantidad){
   int monto = atoi(cantidad.c_str());
-  monto <= 0 ? monto=volerIngresarCantidad() : monto;
+  monto <= 6000 ? monto : monto=volverIngresarCantidad();
+  //monto <= 0 ? monto=volverIngresarCantidad() : monto;
   return monto;
 
 }
@@ -76,7 +80,7 @@ int validarLength(string cantidad){
 
 }
 
-int volerIngresarCantidad(){
+int volverIngresarCantidad(){
   string montoUs;
   int montoInt;
   bool bandera = 0;
@@ -90,4 +94,5 @@ int volerIngresarCantidad(){
   }
   return montoInt;
 }
+
 
