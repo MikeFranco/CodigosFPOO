@@ -12,7 +12,7 @@
 <h3>2NM22</h3>
 
 <h1>Número de Trabajo</h1>
-<h3>Programa número 5</h3>
+<h3>Programa número 6</h3>
 
 <h1>Requerimiento:</h1>
 <h3>Hacer un programa que reparta un monto en diferentes denominaciones: 500,100, 50,10,5,1</h3>
@@ -20,27 +20,29 @@
 
 <h1>Pantalla preliminar</h1>
 
-<pre>           ===== Programa que te dará un monto en diferentes denominaciones ====
+<pre>
+                                  == Programa que calcula la ==
+                                  == Sumatoria de tu número  ==
 
   Instrucciones para un buen funcionamiento del programa:
-      *Ingresar una cantidad menor a $6,000
-      *Ingresar únicamente números
+      -Ingresar número mayores a 0
+      -Ingresar un número menor a 6 dígitos
+      -Ingresar solo números enteros
+      -SI ingresas primero números y luego letras, se podrá leer sin problema la sumatoria
 
-  Ingrese la cantidad que desee cambiar: 456
-  Calculando su cambio, un momento por favor...
-  Billetes de 100: 4
-  Billetes de 50: 1
-  Monedas de 5: 1
-  Monedas de 1: 1
+  ¿De qué numero quieres la sumatoria? 
+
+  Revisando los datos, un momento por favor...
+  La sumatoria de tu número es: 
 </pre>
 <h1>Tabla de Pruebas</h1>
 
 | Valores de prueba  | Salida esperada                  |
 | -------------      |:------------------------:        |
-|  960               |  500: 1, 100: 4, 50: 1, 10: 1    |
-|  6000              |  500: 12                         |
-|  asdv              |  Se pide al usuario ingresar la cantidad una vez más  |
-|  9000              |  Se pide al usuario ingresar la cantidad una vez más  |
+|  45                |   1035                           |
+|  hola              |  No ingresaste números, favor de ingresar números     |
+|  8994              |  40450515                                             |
+|  -99               |   Se pide al usuario volver a ingresar el dato         |
 
 <h1>Pantalla con el código funcionando</h1>
 <img alt="PNG" src="./codigofunciona.png"/>

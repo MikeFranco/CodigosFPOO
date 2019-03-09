@@ -1,3 +1,8 @@
+/*
+  Elaborado por: Miguel Angel Franco Peza
+  Secuencia: 2NM22
+*/
+
 #include <string>
 #include <iostream>
 #include <math.h>
@@ -60,7 +65,7 @@ int volverIngresarNumero(){
   int num;
   bool bandera = 0;
   while(bandera == 0){
-    cout<<"\nIngrese de nuevo el numStr: "; cin>>numStr;
+    cout<<"\nIngrese de nuevo el numero: "; cin>>numStr;
     if(validarNumero(numStr)==1 && validarLength(numStr)==1) {
       num=cambiarStringAInt(numStr);
       bandera=1;

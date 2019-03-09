@@ -88,13 +88,13 @@ int volverIngresarCantidad(){
 
 int regresarCambio(int monto){
 
-  int denominacion[] = {500, 200, 100, 50, 20, 10, 5, 1};
+  int denominacion[] = {500, 100, 50, 10, 5, 1};
   int resultado;
   for (int i = 0; monto > 0; i++)
     if ((resultado = monto / denominacion[i]) > 0){
-      monto >= 20 
-      ? cout<<"Billetes de: "<<denominacion[i]<<": "<<resultado<<endl
-      : cout<<"Monedas de: "<<denominacion[i]<<": "<<resultado<<endl;
+      monto >= 50
+      ? cout<<"Billetes de "<<denominacion[i]<<": "<<resultado<<endl
+      : cout<<"Monedas de "<<denominacion[i]<<": "<<resultado<<endl;
       monto %= denominacion[i];
     }
 
