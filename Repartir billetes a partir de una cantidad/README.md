@@ -33,11 +33,12 @@
 </pre>
 <h1>Tabla de Pruebas</h1>
 
-| Valores de prueba  | Salida esperada              | ¿Se cumple la salida?  |
-| -------------      |:------------------------:    | ---------------------: |
-| 12  12  12         | tu triangulo es un equilatero|          SI            |
-| 11  10  9          |tu triangulo es un escaleno   |          SI            |
-| 15  14  15         | tu triangulo es un isosceles |          SI            |
+| Valores de prueba  | Salida esperada              |
+| -------------      |:------------------------:    |
+|          | |
+|          | |
+|          | |
+|          |
 
 <h1>Pantalla con el código funcionando</h1>
 <img alt="PNG" src="./codigofunciona.png"/>
