@@ -13,9 +13,9 @@ int instrucciones();
 bool validarCantidad(string);
 int volverIngresarCantidad();
 int cambiarStringAInt(string);
-int validarMenor6000(int);
 int validarLength(string);
 int regresarCambio(int);
+int delay(int);
 
 int main(){
 
@@ -28,12 +28,10 @@ int main(){
   validarCantidad(montoUsr)==1 && validarLength(montoUsr)==1
     ? montoUsrInt=cambiarStringAInt(montoUsr)
     : montoUsrInt=volverIngresarCantidad();
-  
-  int valido = validarMenor6000(montoUsrInt);
-  valido == 1 ? cout<<"si es menor o igual a 6000" : cout<<"no es menor a 6000\n";
+
+  cout<<"Calculando tu cambio, un momento por favor.."<<endl;
+  delay(700000);
   regresarCambio(montoUsrInt);
-  int quinientos=regresarCambio(montoUsrInt);
-  cout<<"\nhay "<<quinientos<<" de $500\n";
 
 }
 
@@ -57,18 +55,9 @@ bool validarCantidad(string lado){
 
 }
 
-int validarMenor6000(int cantidad){
-  int bandera;
-  cantidad <= 6000
-    ? bandera=1
-    : bandera=0;
-  return bandera;
-}
-
 int cambiarStringAInt(string cantidad){
   int monto = atoi(cantidad.c_str());
   monto <= 6000 ? monto : monto=volverIngresarCantidad();
-  //monto <= 0 ? monto=volverIngresarCantidad() : monto;
   return monto;
 
 }
@@ -86,6 +75,7 @@ int volverIngresarCantidad(){
   int montoInt;
   bool bandera = 0;
   while(bandera == 0){
+    cout<<"\nLa cantidad no pudo ser leída correctamente";
     cout<<"\nIngrese de nuevo la cantidad: "; cin>>montoUs;
     if(validarCantidad(montoUs)==1 && validarLength(montoUs)==1) {
       montoInt=cambiarStringAInt(montoUs);
@@ -97,13 +87,22 @@ int volverIngresarCantidad(){
 }
 
 int regresarCambio(int monto){
-  int quinientos, cien, cincuenta, diez, cinco, uno;
-  int division;
-  for(int i=0; i<monto; i++){
-    division=monto%500;
-    if(division == 0) quinientos++;
-    else break;
-  }
-  return quinientos;
+
+  int denominacion[] = {500, 200, 100, 50, 20, 10, 5, 1};
+  int resultado;
+  for (int i = 0; monto > 0; i++)
+    if ((resultado = monto / denominacion[i]) > 0){
+      monto >= 20 
+      ? cout<<"Billetes de: "<<denominacion[i]<<": "<<resultado<<endl
+      : cout<<"Monedas de: "<<denominacion[i]<<": "<<resultado<<endl;
+      monto %= denominacion[i];
+    }
+
 }
 
+int delay (int n) {
+  int i,j, freq=n-1;
+  for (i=2; i<=n; i++) for (j=sqrt(i);j>1;--j) if (i%j==0) {--freq; break;}
+  return freq;
+
+}
