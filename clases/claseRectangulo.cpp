@@ -4,6 +4,7 @@ using namespace std;
 int delay();
 void menu();
 float validateNumber();
+float opciones(int);
 
 class rectangulo{
   private:
@@ -11,7 +12,7 @@ class rectangulo{
   float altura;
   public:
   rectangulo (float datoBase, float datoAltura) { base = datoBase; altura = datoAltura; }
-  float perimetro() { (2*base) + (2*altura); }
+  float perimetro() { base+base+altura+altura; }
   float area() { base * altura; }
   void cambiarBase (float nuevaBase) { base = nuevaBase; }
   void cambiarAltura (float nuevaAltura){ altura = nuevaAltura; }
@@ -21,14 +22,25 @@ class rectangulo{
 };
 
 int main(){
+  int ans;
   cout<<"\t\t\tClase de un Rectángulo\n";
   cout<<"Favor de ingresar, separados por un enter o un espacio, la altura y la base del rectángulo: ";
-  rectangulo rectangulo(validateNumber(), validateNumber());
-  cout<<"La altura del rectángulo es: "<<rectangulo.consultarAltura()<<endl;
-  cout<<"La base del rectángulo es: "<<rectangulo.consultarBase()<<endl;
-  menu();
-}
+  rectangulo aver(validateNumber(), validateNumber());
+  cout<<"\nLa altura del rectángulo es: "<<aver.consultarAltura();
+  cout<<"\nLa base del rectángulo es: "<<aver.consultarBase()<<endl<<endl;
+  cout<<aver.area();
+  /* menu();
+  ans = validateNumber();
+  opciones(ans);
+  switch(ans){
+    case 1:
+      cout<<"El perímetro es: "<<rectangulo.perimetro()<<endl;
+    break;
 
+  } */
+  /* case 2:
+    cout<<rectangulo.area(); */
+}
 
 float validateNumber(){
   float numero;
@@ -39,8 +51,8 @@ float validateNumber(){
     cin.ignore();
     cin>>numero;
   }
-
   return numero;
+
 }
 
 int delay () {
@@ -55,5 +67,11 @@ void menu(){
   cout<<"¿Qué deseas hacer con los datos que ingresaste del rectángulo?\n";
   cout<<"1. Calcular el perímetro\n2. Calcular el área\n3. Cambiar la base\n";
   cout<<"4. Cambiar la altura\n5. Consultar la base\n6. Consultar la altura\n";
+  cout<<"Opcion: ";
+}
+
+float opciones(int respuesta){
+
+  //float per = rectangulo.perimetro();
 
 }
