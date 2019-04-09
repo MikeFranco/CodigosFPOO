@@ -15,7 +15,7 @@ int volverIngresarCantidad();
 int cambiarStringAInt(string);
 int validarLength(string);
 int regresarCambio(int);
-int delay(int);
+int delay();
 
 int main(){
 
@@ -30,7 +30,7 @@ int main(){
     : montoUsrInt=volverIngresarCantidad();
 
   cout<<"Calculando tu cambio, un momento por favor.."<<endl;
-  delay(700000);
+  delay();
   regresarCambio(montoUsrInt);
 
 }
@@ -100,7 +100,8 @@ int regresarCambio(int monto){
 
 }
 
-int delay (int n) {
+int delay () {
+  int n = 700000;
   int i,j, freq=n-1;
   for (i=2; i<=n; i++) for (j=sqrt(i);j>1;--j) if (i%j==0) {--freq; break;}
   return freq;

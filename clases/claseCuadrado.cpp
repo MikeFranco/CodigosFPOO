@@ -1,8 +1,9 @@
 /*Clase del cuadrado*/
 #include <iostream>
-
+#include <math.h>
 using namespace std;
 float validateNumber();
+int delay();
 
 class cuadrado {
   private: float lado;
@@ -19,7 +20,9 @@ main(void){
   cout<<"Este programa crea una clase cuadrado. \n";
   cout<<"Teclee el valor del lado: ";
   cuadrado cuadro(validateNumber()); //se crea el objeto
+  delay();
   cout<<"El perímetro es: "<< cuadro.perimetro()<<endl;
+  delay();
   cout<<"El área es: "<< cuadro.area()<<endl;
 
 };
@@ -35,4 +38,12 @@ float validateNumber(){
   }
 
   return lado;
+}
+
+int delay () {
+  int n = 700000;
+  int i,j, freq=n-1;
+  for (i=2; i<=n; i++) for (j=sqrt(i);j>1;--j) if (i%j==0) {--freq; break;}
+  return freq;
+
 }
