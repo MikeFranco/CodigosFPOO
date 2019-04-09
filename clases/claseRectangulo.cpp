@@ -22,8 +22,10 @@ class rectangulo{
 
 int main(){
   cout<<"\t\t\tClase de un Rectángulo\n";
-  rectangulo rect();
-  cout<<"Favor de ingresar la base del rectángulo: ";
+  cout<<"Favor de ingresar, separados por un enter o un espacio, la altura y la base del rectángulo: ";
+  rectangulo rectangulo(validateNumber(), validateNumber());
+  cout<<"La altura del rectángulo es: "<<rectangulo.consultarAltura()<<endl;
+  cout<<"La base del rectángulo es: "<<rectangulo.consultarBase()<<endl;
   menu();
 }
 
@@ -50,6 +52,8 @@ int delay () {
 }
 
 void menu(){
-  cout<<"1";
+  cout<<"¿Qué deseas hacer con los datos que ingresaste del rectángulo?\n";
+  cout<<"1. Calcular el perímetro\n2. Calcular el área\n3. Cambiar la base\n";
+  cout<<"4. Cambiar la altura\n5. Consultar la base\n6. Consultar la altura\n";
 
 }
