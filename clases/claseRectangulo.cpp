@@ -4,7 +4,7 @@ using namespace std;
 int delay();
 void menu();
 float validateNumber();
-float opciones(int, class rectangulo);
+float opciones(class rectangulo);
 
 class rectangulo{
   private:
@@ -21,16 +21,13 @@ class rectangulo{
 };
 
 int main(){
-  int ans;
   cout<<"\t\t\tClase de un Rectángulo\n";
   cout<<"Favor de ingresar, separados por un enter o un espacio, la altura y la base del rectángulo: ";
-
   rectangulo rectang(validateNumber(), validateNumber());
   cout<<"\nLa altura del rectángulo es: "<<rectang.consultarAltura();
   cout<<"\nLa base del rectángulo es: "<<rectang.consultarBase()<<endl<<endl;
   menu();
-  ans = validateNumber();
-  opciones(ans, rectang);
+  opciones(rectang);
 
 }
 
@@ -63,8 +60,10 @@ void menu(){
   cout<<"Opcion: ";
 }
 
-float opciones(int respuesta, rectangulo rectang){
+float opciones(rectangulo rectang){
   int exit = 1;
+  int respuesta;
+  respuesta = validateNumber();
   while(exit != 0){
 
     switch(respuesta){
@@ -99,6 +98,8 @@ float opciones(int respuesta, rectangulo rectang){
         cout<<"Favor de ingresar una opción válida";
       break;
     }
+    cout<<"¿Deseas hacer alguna otra acción? (Presiona 0 para salir, cualquier otra tecla para continuar)"; cin>>exit;
+    exit == 0 ? exit : respuesta = validateNumber();
   }
 
 }
