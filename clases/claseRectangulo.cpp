@@ -25,7 +25,7 @@ int main(){
   cout<<"Favor de ingresar, separados por un enter o un espacio, la altura y la base del rectángulo: ";
   rectangulo rectang(validateNumber(), validateNumber());
   cout<<"\nLa altura del rectángulo es: "<<rectang.consultarAltura();
-  cout<<"\nLa base del rectángulo es: "<<rectang.consultarBase()<<endl<<endl;
+  cout<<"\nLa base del rectángulo es: "<<rectang.consultarBase()<<endl;
   menu();
   opciones(rectang);
 
@@ -53,9 +53,9 @@ int delay () {
 }
 
 void menu(){
-  cout<<"¿Qué deseas hacer con los datos que ingresaste del rectángulo?\n";
+  cout<<"\n¿Qué deseas hacer con los datos que ingresaste del rectángulo?\n";
   cout<<"1. Calcular el perímetro\n2. Calcular el área\n3. Cambiar la base\n";
-  cout<<"4. Cambiar la altura\n5. Consultar la base\n6. Consultar la altura\n";
+  cout<<"4. Cambiar la altura\n5. Consultar la base\n6. Consultar la altura\n7. Salir\n";
   cout<<"Opcion: ";
 }
 
@@ -91,13 +91,12 @@ float opciones(rectangulo rectang){
         cout<<"El valor de la altura es: "<<rectang.consultarAltura()<<endl;
       break;
       case 7:
-        exit = true;
       break;
       default:
         cout<<"Favor de ingresar una opción válida";
       break;
     }
-    cout<<"¿Deseas hacer alguna otra acción? (Presiona 0 para salir, cualquier otra tecla para continuar)"; cin>>exit;
+    cout<<"¿Deseas hacer alguna otra acción? (Presiona 0 para salir, cualquier otra tecla para continuar)"; cin>>exit; delay();
     if(exit != 0 ) { menu(); respuesta = validateNumber();}
   }
 
