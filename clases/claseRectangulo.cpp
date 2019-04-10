@@ -45,7 +45,6 @@ float validateNumber(){
 }
 
 int delay () {
-  //int n = 700000;
   int n = 60000;
   int i,j, freq=n-1;
   for (i=2; i<=n; i++) for (j=i/2;j>1;--j) if (i%j==0) {--freq; break;}
@@ -99,7 +98,7 @@ float opciones(rectangulo rectang){
       break;
     }
     cout<<"¿Deseas hacer alguna otra acción? (Presiona 0 para salir, cualquier otra tecla para continuar)"; cin>>exit;
-    exit == 0 ? exit : respuesta = validateNumber();
+    if(exit != 0 ) { menu(); respuesta = validateNumber();}
   }
 
 }
