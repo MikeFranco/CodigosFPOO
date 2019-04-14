@@ -1,3 +1,7 @@
+/*
+  Código creado por: Miguel Ángel Franco Peza Secuencia: 2NM22
+  Clase de un Rectángulo
+*/
 #include <iostream>
 using namespace std;
 
@@ -32,13 +36,10 @@ int main(){
 }
 
 float validateNumber(){
-  float numero;
-  cin>>numero;
+  float numero; cin>>numero;
   while( !cin ) {
     cout << "Favor de ingresar un número. \n";
-    cin.clear();
-    cin.ignore();
-    cin>>numero;
+    cin.clear(); cin.ignore(); cin>>numero;
   }
   return numero;
 
@@ -67,22 +68,18 @@ float opciones(rectangulo rectang){
 
     switch(respuesta){
       case 1:
-        cout<<"Calculando el perímetro..."<<endl;
-        delay();
+        cout<<"Calculando el perímetro..."<<endl; delay();
         cout<<"El perímetro es: "<<rectang.perimetro()<<endl;
       break;
       case 2:
-        cout<<"Calculando el área...";
-        delay();
+        cout<<"Calculando el área..."; delay();
         cout<<"El área es: "<<rectang.area()<<endl;
       break;
       case 3:
-        cout<<"Ingresa el nuevo valor de la base: ";
-        rectang.cambiarBase(validateNumber());
+        cout<<"Ingresa el nuevo valor de la base: "; rectang.cambiarBase(validateNumber());
       break;
       case 4:
-        cout<<"Ingresa el nuevo valor de la altura: ";
-        rectang.cambiarAltura(validateNumber());
+        cout<<"Ingresa el nuevo valor de la altura: "; rectang.cambiarAltura(validateNumber());
       break;
       case 5:
         cout<<"El nuevo valor de la base es: "<<rectang.consultarBase()<<endl;
@@ -90,13 +87,12 @@ float opciones(rectangulo rectang){
       case 6:
         cout<<"El valor de la altura es: "<<rectang.consultarAltura()<<endl;
       break;
-      case 7:
-      break;
+      case 7: break;
       default:
         cout<<"Favor de ingresar una opción válida";
       break;
     }
-    cout<<"¿Deseas hacer alguna otra acción? (Presiona 0 para salir, cualquier otra tecla para continuar)"; cin>>exit; delay();
+    cout<<"Presiona 0 para salir, cualquier otra tecla para continuar"; cin>>exit; delay();
     if(exit != 0 ) { menu(); respuesta = validateNumber();}
   }
 

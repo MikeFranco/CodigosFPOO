@@ -1,8 +1,4 @@
-/*
-  Autor: Miguel Angel Franco Peza
-  Secuencia: 2NM22
-*/
-
+//  Autor: Miguel Angel Franco Peza  Secuencia: 2NM22
 #include <iostream>
 #include <cmath>
 #include <string>
@@ -28,7 +24,6 @@ int main(){
   validarCantidad(montoUsr)==1 && validarLength(montoUsr)==1
     ? montoUsrInt=cambiarStringAInt(montoUsr)
     : montoUsrInt=volverIngresarCantidad();
-
   cout<<"Calculando tu cambio, un momento por favor.."<<endl;
   delay();
   regresarCambio(montoUsrInt);
@@ -71,9 +66,7 @@ int validarLength(string cantidad){
 }
 
 int volverIngresarCantidad(){
-  string montoUs;
-  int montoInt;
-  bool bandera = 0;
+  string montoUs; int montoInt; bool bandera = 0;
   while(bandera == 0){
     cout<<"\nLa cantidad no pudo ser leída correctamente";
     cout<<"\nIngrese de nuevo la cantidad: "; cin>>montoUs;
@@ -88,8 +81,7 @@ int volverIngresarCantidad(){
 
 int regresarCambio(int monto){
 
-  int denominacion[] = {500, 100, 50, 10, 5, 1};
-  int resultado;
+  int denominacion[] = {500, 100, 50, 10, 5, 1}; int resultado;
   for (int i = 0; monto > 0; i++)
     if ((resultado = monto / denominacion[i]) > 0){
       monto >= 50

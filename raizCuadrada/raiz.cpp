@@ -1,4 +1,6 @@
 //Adaptado de https://stackoverflow.com/questions/19611198/finding-square-root-without-using-sqrt-function
+//Miguel Ángel Franco Peza
+//Secuencia: 2NM22
 #include <math.h>
 #include <iostream>
 

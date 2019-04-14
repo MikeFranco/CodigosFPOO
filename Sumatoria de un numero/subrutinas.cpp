@@ -1,7 +1,4 @@
-/*
-  Elaborado por: Miguel Angel Franco Peza
-  Secuencia: 2NM22
-*/
+/* Elaborado por: Miguel Angel Franco Peza  Secuencia: 2NM22  */
 
 #include <string>
 #include <iostream>
@@ -21,7 +18,6 @@ int main (){
   int numero;
   cout<<"\t\t== Programa que calcula la ==\n\t\t== Sumatoria de tu número  ==\n";
   instrucciones();
-
   cout<<"¿De qué número quieres la sumatoria? "; cin>>numString;
   validarNumero(numString)==1 && validarLength(numString)==1 ? numero = cambiarStringAInt(numString) : numero = -1;
   cout<<"\nRevisando datos, un momento por favor...\n";
@@ -33,22 +29,17 @@ int main (){
 }
 
 int instrucciones(){
-  cout<<"\nInstrucciones para un buen funcionamiento del código:"<<endl;
-  cout<<"\t-Ingresar números mayores a 0"<<endl;
-  cout<<"\t-Ingresar un número menor a 6 digitos"<<endl;
+  cout<<"\nInstrucciones para un buen funcionamiento del código:\n";
+  cout<<"\t-Ingresar números mayores a 0\n\t-Ingresar un número menor a 6 digitos\n";
   cout<<"\t-Ingresar solo números enteros"<<endl;
-  cout<<"\t-Si ingresas primero números y luego letras, se podrá leer sin problema tu sumatoria\n"<<endl;
+  cout<<"\t-Si ingresas primero números y luego letras, se podrá leer sin problema tu sumatoria\n\n";
 
 }
 
 bool validarNumero(string lado){
   int valido=0;
 
-  for(int i=0;i<lado.size();i++){
-
-    if(isdigit(lado[i])) {valido=1;break;}
-
-  }
+  for(int i=0;i<lado.size();i++) if(isdigit(lado[i])) {valido=1;break;}
   return valido;
 
 }
@@ -61,16 +52,11 @@ int cambiarStringAInt(string numString){
 }
 
 int volverIngresarNumero(){
-  string numStr;
-  int num;
-  bool bandera = 0;
+  string numStr; int num; bool bandera = 0;
   while(bandera == 0){
     cout<<"\nIngrese de nuevo el numero: "; cin>>numStr;
-    if(validarNumero(numStr)==1 && validarLength(numStr)==1) {
-      num=cambiarStringAInt(numStr);
-      bandera=1;
-
-    } else cout<<"Favor de revisar las instrucciones\n";
+    if(validarNumero(numStr)==1 && validarLength(numStr)==1) { num=cambiarStringAInt(numStr); bandera=1; }
+    else cout<<"Favor de revisar las instrucciones\n";
   }
   return num;
 
@@ -93,7 +79,7 @@ int delay (int n) {
 
 /*
   Las 3 diferentes formas de hacer la subrutina de la sumatoria de un numero
-  Para probar cada funcion, solo hay que descomentarla 
+  Para probar cada funcion, solo hay que descomentarla
 */
 
 int sumatoria (int numero){
