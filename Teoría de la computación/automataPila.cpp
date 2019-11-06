@@ -21,14 +21,14 @@ int main(){
         ? state = 3
         : validateNumber(word[i])
           ? state = 2
-          : stateIn2()
-      : state == 3
-        ? validateLetter(word[i]) || validateNumber(word[i])
-          ? state = 3
-          : state == 2
-            ? stateIn2()
-            : error()
-        : error();
+          : state == 3
+            ? validateLetter(word[i]) || validateNumber(word[i])
+              ? state = 3
+              : error()
+            : state == 2
+                ? stateIn2()
+                : error()
+      : error();
 
   }
   cout<<"Así acaba el estado:"<<state<<endl;
