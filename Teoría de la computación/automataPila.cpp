@@ -7,34 +7,31 @@ using namespace std;
 bool validateLetter(char);
 bool validateNumber(char);
 bool error();
+bool stateIn2();
 bool actualState(int);
 
 int main(){
-  int state = 0; string word;
+  int state = 1; string word;
   cout<<"Ingrese la cadena de caracteres que quiera validar: "; cin>>word; cout<<word<<endl;
 
   for(int i=0; i<word.size(); i++){
     cout<<"Estado Actual: "<<state<<endl;
-    switch(state){
-      case 0:
-        return validateLetter(word[i])
-          ? actualState(1) && state = 1
-          : validateNumber(word[i])
-          ? actualState(2) && state = 2
-          : error();
-      break;
-      case 1:
-        return validateLetter(word[i]) || validateNumber(word[i])
-          ? actualState(1) && state = 1
-          : error();
-      break;
-      case 2:
-        actualState(2);
-        error();
-        i = word.size(); break;
-    }
+    state == 1
+      ? validateLetter(word[i])
+        ? state = 3
+        : validateNumber(word[i])
+          ? state = 2
+          : stateIn2()
+      : state == 3
+        ? validateLetter(word[i]) || validateNumber(word[i])
+          ? state = 3
+          : state == 2
+            ? stateIn2()
+            : error()
+        : error();
 
   }
+  cout<<"Así acaba el estado:"<<state<<endl;
 
 }
 
@@ -47,6 +44,11 @@ bool validateNumber(char number) {
 
 bool error(){
   cout<<"El caracter no es válido"<<endl;
+  return false;
+}
+
+bool stateIn2(){
+  cout<<"El estado es 2 y no se puede cambiar de estado"<<endl;
   return false;
 }
 
