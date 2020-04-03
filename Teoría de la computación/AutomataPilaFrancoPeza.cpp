@@ -1,3 +1,8 @@
+/* 
+Miguel Angel Franco Peza
+Secuencia: 2CM32
+ */
+
 #include<iostream>
 #include<stack>
 using namespace std;
