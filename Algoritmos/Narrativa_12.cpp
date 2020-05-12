@@ -80,18 +80,21 @@ int guardarArchivoOrdenado(){
   return (0);
 }
 
-void Ordenamiento (int arr[], int n){
-  printf("Ordenamiento Shell\n");
-  for (int pivote = n/2; pivote > 0; pivote /= 2) { 
-    for (int i = pivote; i < n; i++) { 
-      int temp = arr[i]; 
-      int j;
-      for (j = i; j >= pivote && arr[j - pivote] > temp; j -= pivote) 
-        arr[j] = arr[j - pivote]; 
-      arr[j] = temp; 
-    } 
+void Ordenamiento (int lista[], int cn){
+  printf("Ordenamiento Seleccion\n");
+  int min, aux;
+  for (i=0; i<cn-1; i++) {
+    min=i;
+    for(j=i+1; j<cn; j++){
+      if(lista[min] > lista[j]){
+        min=j;
+      }
+    }
+    aux=lista[min];
+    lista[min]=lista[i];
+    lista[i]=aux ;
   }
-}
+} // fin del ordenamiento
 
 int main(int argc, const char * argv[]){
   LeeArchivo();

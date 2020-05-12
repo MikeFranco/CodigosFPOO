@@ -22,6 +22,7 @@ int lista[1000000];
 int LeeArchivo();
 int Ordenamiento();
 int guardarArchivoOrdenado();
+string ordenamientoAElegir();
 
 clock_t t_ini, t_fin;
 double secs;
@@ -80,21 +81,44 @@ int guardarArchivoOrdenado(){
   return (0);
 }
 
-void Ordenamiento (int arr[], int n){
-  printf("Ordenamiento Shell\n");
-  for (int pivote = n/2; pivote > 0; pivote /= 2) { 
-    for (int i = pivote; i < n; i++) { 
-      int temp = arr[i]; 
-      int j;
-      for (j = i; j >= pivote && arr[j - pivote] > temp; j -= pivote) 
-        arr[j] = arr[j - pivote]; 
-      arr[j] = temp; 
-    } 
+string ordenamientoAElegir(int opcion){
+  switch (opcion) {
+    case 1:
+      return "burbuja";
+      break;
+    case 2:
+      return "burbuja no sé qué";
+      break;
+    default:
+      cout<<"No encontré esa opción, repita de nuevo";
+      break;
   }
 }
 
-int main(int argc, const char * argv[]){
-  LeeArchivo();
+void OrdenamientoBurbuja (int lista[], int cn){
+  printf("Ordenamiento Burbuja\n");
+  int i, j, aux;
+  for(i=0;i<5;i++){
+		for(j=0;j<4;j++){
+			if(lista[j] > lista[j+1]){
+				aux = lista[j];
+				lista[j] = lista[j+1];
+				lista[j+1] = aux;
+			}
+		}
+	}
+}
+
+int main(){
+  int opcion;
+  cout<<"Escoge un ordenamiento\n";
+  cout<<"1. Ordenamiento Burbuja\n";
+
+  cout<<"Ingrese el ordenamiento: "; cin>>opcion;
+  string nombreOrdenamiento = ordenamientoAElegir(opcion);
+  cout<<nombreOrdenamiento;
+
+  /* LeeArchivo();
 
   // Inicia area de medicion de tiempo
   t_ini = clock(); // almacena tiempo inicial
@@ -104,6 +128,6 @@ int main(int argc, const char * argv[]){
   
   secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
   printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
-  guardarArchivoOrdenado();
+  guardarArchivoOrdenado(); */
   return 0;
 }
