@@ -123,13 +123,13 @@ int main(){
   LeeArchivo(cantidadNumeros);
   
   // Inicia area de medicion de tiempo
-  switch(nombreOrdenamiento) {
-    case "burbuja":
+  switch(opcion) {
+    case 1:
       t_ini = clock(); // almacena tiempo inicial
       OrdenamientoBurbuja(); // realiza el ordenamiento
       t_fin = clock(); // almacena tiempo final
     break;
-    case "burbuja no sé qué":
+    case2:
 
     break;
   }
