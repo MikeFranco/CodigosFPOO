@@ -33,12 +33,11 @@ int LeeArchivo(string cantidadNumeros){
   nombrearchivo += cantidadNumeros;
   nombrearchivo += ".txt";
   archivo1 = fopen(nombrearchivo.c_str(), "r");
-  cout<<nombrearchivo;
   if(archivo1 == NULL ){
     printf(" No se puede abrir el archivo ");
     exit(1);
   }else{
-    printf(" Se abrio el archivo correctamente %s\n ", nombrearchivo.c_str() );
+    cout<<" Se abrio el archivo correctamente \n";
   }
   cn=0;
   for (int i=0; !feof(archivo1); i++) {
@@ -93,7 +92,6 @@ string ordenamientoAElegir(int opcion){
 }
 
 void OrdenamientoBurbuja (){
-  printf("Ordenamiento Burbuja\n");
   int i, j, aux;
   for(i=0;i<5;i++){
 		for(j=0;j<4;j++){
