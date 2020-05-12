@@ -19,7 +19,7 @@ int si,izq,der,temporal,pivote,ban=0,valorsalva;
 
 int lista[1000000];
 
-int LeeArchivo(string, string);
+int LeeArchivo(string);
 int Ordenamiento();
 int guardarArchivoOrdenado();
 string ordenamientoAElegir();
@@ -27,10 +27,9 @@ string ordenamientoAElegir();
 clock_t t_ini, t_fin;
 double secs;
 
-int LeeArchivo(string nombreOrdenamiento, string cantidadNumeros){
+int LeeArchivo(string cantidadNumeros){
   FILE *archivo1;
   string nombrearchivo = "num";
-  nombrearchivo += nombreOrdenamiento;
   nombrearchivo += cantidadNumeros;
   nombrearchivo += ".txt";
   archivo1 = fopen(nombrearchivo.c_str(), "r");
@@ -52,13 +51,13 @@ int LeeArchivo(string nombreOrdenamiento, string cantidadNumeros){
   return (0);
 }
 
-int guardarArchivoOrdenado(){
+/* int guardarArchivoOrdenado(){
   FILE *archivo2;
   string valorInt;
   printf("\n Teclea el nombre del archivo de salida: ");
-  cin >> nombrearchivo1;
-  nombrearchivo1+= ".txt";
-  archivo2 = fopen(nombrearchivo1.c_str(), "w");
+  //cin >> nombrearchivo1;
+  //nombrearchivo1+= ".txt";
+  //archivo2 = fopen(nombrearchivo1.c_str(), "w");
 
   if(archivo2== NULL ){
     printf(" El archivo no se abrio. ");
@@ -77,19 +76,19 @@ int guardarArchivoOrdenado(){
   }
   fclose(archivo2);
   return (0);
-}
+} */
 
 string ordenamientoAElegir(int opcion){
   switch (opcion) {
     case 1:
       return "burbuja";
-      break;
+    break;
     case 2:
       return "burbuja no sé qué";
-      break;
+    break;
     default:
       cout<<"No encontré esa opción, repita de nuevo";
-      break;
+    break;
   }
 }
 
@@ -116,20 +115,28 @@ int main(){
   cout<<"Ingrese el ordenamiento: "; cin>>opcion;
   // se obtiene un string para saber el tipo de ordenamiento que se va a usar
   string nombreOrdenamiento = ordenamientoAElegir(opcion);
-  cout<<"¿Cuántos valores quieres ordenar? (10/100/1,000/10,000/100,000/1'000,000";
+  cout<<"¿Cuantos valores quieres ordenar? (10/100/1,000/10,000/100,000/1'000,000): ";
   cin>>cantidadNumeros;
+  
   //Se da por hecho de que el archivo que se leerá será el que se encuentra
   //en esta carpeta
-  LeeArchivo(nombreOrdenamiento, cantidadNumeros);
-
-  // Inicia area de medicion de tiempo
-  //t_ini = clock(); // almacena tiempo inicial
-  //Ordenamiento(lista, cn); // realiza el ordenamiento
-  //t_fin = clock(); // almacena tiempo final
-  // Termina area de medicion de tiempo
+  LeeArchivo(cantidadNumeros);
   
-  //secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
-  //printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
+  // Inicia area de medicion de tiempo
+  switch(nombreOrdenamiento) {
+    case "burbuja":
+      t_ini = clock(); // almacena tiempo inicial
+      OrdenamientoBurbuja(); // realiza el ordenamiento
+      t_fin = clock(); // almacena tiempo final
+    break;
+    case "burbuja no sé qué":
+
+    break;
+  }
+  // Termina area de medicion de tiempo
+
+  secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
+  printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
   //guardarArchivoOrdenado();
   return 0;
 }
