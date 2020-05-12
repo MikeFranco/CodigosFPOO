@@ -19,25 +19,23 @@ int si,izq,der,temporal,pivote,ban=0,valorsalva;
 
 int lista[1000000];
 
-int LeeArchivo();
+int LeeArchivo(string, string);
 int Ordenamiento();
 int guardarArchivoOrdenado();
 string ordenamientoAElegir();
 
 clock_t t_ini, t_fin;
 double secs;
-string nombrearchivo;
-string nombrearchivo1;
 
-int LeeArchivo(){
+int LeeArchivo(string nombreOrdenamiento, string cantidadNumeros){
   FILE *archivo1;
-  string valorInt;
-  printf("\n Teclea el nombre del archivo de entrada: ");
-  cin >> nombrearchivo;
-  nombrearchivo+= ".txt";
+  string nombrearchivo = "num";
+  nombrearchivo += nombreOrdenamiento;
+  nombrearchivo += cantidadNumeros;
+  nombrearchivo += ".txt";
   archivo1 = fopen(nombrearchivo.c_str(), "r");
-
-  if(archivo1== NULL ){
+  cout<<nombrearchivo;
+  if(archivo1 == NULL ){
     printf(" No se puede abrir el archivo ");
     exit(1);
   }else{
@@ -111,23 +109,27 @@ void OrdenamientoBurbuja (int lista[], int cn){
 
 int main(){
   int opcion;
+  string cantidadNumeros;
   cout<<"Escoge un ordenamiento\n";
   cout<<"1. Ordenamiento Burbuja\n";
 
   cout<<"Ingrese el ordenamiento: "; cin>>opcion;
+  // se obtiene un string para saber el tipo de ordenamiento que se va a usar
   string nombreOrdenamiento = ordenamientoAElegir(opcion);
-  cout<<nombreOrdenamiento;
-
-  /* LeeArchivo();
+  cout<<"¿Cuántos valores quieres ordenar? (10/100/1,000/10,000/100,000/1'000,000";
+  cin>>cantidadNumeros;
+  //Se da por hecho de que el archivo que se leerá será el que se encuentra
+  //en esta carpeta
+  LeeArchivo(nombreOrdenamiento, cantidadNumeros);
 
   // Inicia area de medicion de tiempo
-  t_ini = clock(); // almacena tiempo inicial
-  Ordenamiento(lista, cn); // realiza el ordenamiento
-  t_fin = clock(); // almacena tiempo final
+  //t_ini = clock(); // almacena tiempo inicial
+  //Ordenamiento(lista, cn); // realiza el ordenamiento
+  //t_fin = clock(); // almacena tiempo final
   // Termina area de medicion de tiempo
   
-  secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
-  printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
-  guardarArchivoOrdenado(); */
+  //secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
+  //printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
+  //guardarArchivoOrdenado();
   return 0;
 }
