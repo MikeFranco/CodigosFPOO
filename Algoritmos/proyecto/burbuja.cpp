@@ -20,7 +20,7 @@ int si,izq,der,temporal,pivote,ban=0,valorsalva;
 int lista[1000000];
 
 int LeeArchivo(string);
-int Ordenamiento();
+void OrdenamientoBurbuja();
 int guardarArchivoOrdenado();
 string ordenamientoAElegir();
 
@@ -92,7 +92,7 @@ string ordenamientoAElegir(int opcion){
   }
 }
 
-void OrdenamientoBurbuja (int lista[], int cn){
+void OrdenamientoBurbuja (){
   printf("Ordenamiento Burbuja\n");
   int i, j, aux;
   for(i=0;i<5;i++){
