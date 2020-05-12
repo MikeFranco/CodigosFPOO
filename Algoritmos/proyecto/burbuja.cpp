@@ -129,7 +129,7 @@ int main(){
       OrdenamientoBurbuja(); // realiza el ordenamiento
       t_fin = clock(); // almacena tiempo final
     break;
-    case2:
+    case 2:
 
     break;
   }
