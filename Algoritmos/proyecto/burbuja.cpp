@@ -106,9 +106,16 @@ int main(){
   int opcion;
   string cantidadNumeros;
   cout<<"Escoge un ordenamiento\n";
-  cout<<"1. Ordenamiento Burbuja\n";
+  cout<<"\t1. Burbuja\n";
+  cout<<"\t2. Burbuja balanceado\n";
+  cout<<"\t3. Inserción\n";
+  cout<<"\t4. Casilleros\n";
+  cout<<"\t5. Cuentas\n";
+  cout<<"\t6. Mezcla\n";
+  cout<<"\t7. Árbol binario\n";
+  cout<<"\t8. Radix\n";
 
-  cout<<"Ingrese el ordenamiento: "; cin>>opcion;
+  cout<<"Ingrese el ordenamiento deseado: "; cin>>opcion;
   // se obtiene un string para saber el tipo de ordenamiento que se va a usar
   string nombreOrdenamiento = ordenamientoAElegir(opcion);
   cout<<"¿Cuantos valores quieres ordenar? (10/100/1,000/10,000/100,000/1'000,000): ";
