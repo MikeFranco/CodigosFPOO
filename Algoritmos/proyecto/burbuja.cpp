@@ -14,8 +14,7 @@ struct Entrada1 {
   int valor1;
 } entrada1;
 
-int i=0, j=0, k=0, intervalo, temp, n=0, cn=0, salvacn;
-int si,izq,der,temporal,pivote,ban=0,valorsalva;
+int i=0, j=0, k=0, n=0, cn=0, salvacn;
 
 int lista[1000000];
 
@@ -50,32 +49,31 @@ int LeeArchivo(string cantidadNumeros){
   return (0);
 }
 
-/* int guardarArchivoOrdenado(){
-  FILE *archivo2;
-  string valorInt;
-  printf("\n Teclea el nombre del archivo de salida: ");
-  //cin >> nombrearchivo1;
-  //nombrearchivo1+= ".txt";
-  //archivo2 = fopen(nombrearchivo1.c_str(), "w");
+int guardarArchivoOrdenado(string cantidadNumeros, string nombreOrdenamiento){
+  FILE *archivoSalida;
+  string nombreArchivoSalida = "num" + cantidadNumeros + nombreOrdenamiento + ".txt";
 
-  if(archivo2== NULL ){
+  cout<<nombreArchivoSalida<<"prueba, borrar";
+  archivoSalida = fopen(nombreArchivoSalida.c_str(), "w");
+
+  if(archivoSalida == NULL ){
     printf(" El archivo no se abrio. ");
     exit(1);
 
   }else{
-    printf(" Se abrio el archivo correctamente %s\n ", nombrearchivo1.c_str() );
+    printf(" Se abrio el archivo correctamente %s\n ", nombreArchivoSalida.c_str() );
   }
 
   cn=salvacn;
   salvacn=0;
   for (i=0; i<cn; i++) {
     entrada1.valor1=lista[i];
-    fprintf(archivo2, "%i\n", entrada1.valor1);
+    fprintf(archivoSalida, "%i\n", entrada1.valor1);
     salvacn++;
   }
-  fclose(archivo2);
+  fclose(archivoSalida);
   return (0);
-} */
+}
 
 string ordenamientoAElegir(int opcion){
   switch (opcion) {
@@ -92,6 +90,7 @@ string ordenamientoAElegir(int opcion){
 }
 
 void OrdenamientoBurbuja (){
+
   int i, j, aux;
   for(i=0;i<5;i++){
 		for(j=0;j<4;j++){
@@ -135,6 +134,6 @@ int main(){
 
   secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
   printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
-  //guardarArchivoOrdenado();
+  guardarArchivoOrdenado();
   return 0;
 }
