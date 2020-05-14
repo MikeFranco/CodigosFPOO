@@ -20,7 +20,7 @@ int lista[1000000];
 
 int LeeArchivo(string);
 void OrdenamientoBurbuja();
-int guardarArchivoOrdenado();
+int guardarArchivoOrdenado(string, string);
 string ordenamientoAElegir();
 
 clock_t t_ini, t_fin;
@@ -134,6 +134,6 @@ int main(){
 
   secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
   printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
-  guardarArchivoOrdenado();
+  guardarArchivoOrdenado(cantidadNumeros, nombreOrdenamiento);
   return 0;
 }
