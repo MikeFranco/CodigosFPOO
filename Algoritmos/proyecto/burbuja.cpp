@@ -41,8 +41,6 @@ int LeeArchivo(string cantidadNumeros){
   for (int i=0; !feof(archivo1); i++) {
     fscanf (archivo1, "%i", &entrada.valor);
     lista[i]=entrada.valor;
-    cout<<lista[i]<<endl;
-    cout<<cn<<" dentro del leer"<<endl;
     cn++;
   }
   salvacn=cn-1;//se pone un -1 porque cuando se termina el for de la línea 46,
@@ -55,7 +53,6 @@ int guardarArchivoOrdenado(string cantidadNumeros, string nombreOrdenamiento){
   FILE *archivoSalida;
   string nombreArchivoSalida = "num" + cantidadNumeros + nombreOrdenamiento + ".txt";
 
-  cout<<nombreArchivoSalida<<"prueba, borrar";
   archivoSalida = fopen(nombreArchivoSalida.c_str(), "w");
 
   if(archivoSalida == NULL ){
@@ -67,11 +64,9 @@ int guardarArchivoOrdenado(string cantidadNumeros, string nombreOrdenamiento){
   }
 
   cn=salvacn;
-  cout<<cn<<" dentro del guardar"<<endl;
   salvacn=0;
   for (i=0; i<cn; i++) {
     entrada1.valor1=lista[i];
-    cout<<lista[i]<<" lista dentro del guardar"<<endl;
     fprintf(archivoSalida, "%i\n", entrada1.valor1);
     salvacn++;
   }
