@@ -45,7 +45,8 @@ int LeeArchivo(string cantidadNumeros){
     cout<<cn<<" dentro del leer"<<endl;
     cn++;
   }
-  salvacn=cn;
+  salvacn=cn-1;//se pone un -1 porque cuando se termina el for de la línea 46,
+  //al pasar al guardar archivo, el contador toma en cuenta el feof
   fclose(archivo1);
   return (0);
 }
@@ -95,8 +96,8 @@ string ordenamientoAElegir(int opcion){
 void OrdenamientoBurbuja (){
 
   int i, j, aux;
-  for(i=0;i<5;i++){
-		for(j=0;j<4;j++){
+  for(i=1;i<cn;i++){
+		for(j=0;j<cn-i;j++){
 			if(lista[j] > lista[j+1]){
 				aux = lista[j];
 				lista[j] = lista[j+1];
