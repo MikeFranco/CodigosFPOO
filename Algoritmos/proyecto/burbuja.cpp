@@ -28,10 +28,9 @@ double secs;
 
 int LeeArchivo(string cantidadNumeros){
   FILE *archivo1;
-  string nombrearchivo = "num";
-  nombrearchivo += cantidadNumeros;
-  nombrearchivo += ".txt";
+  string nombrearchivo = "num" + cantidadNumeros + ".txt";
   archivo1 = fopen(nombrearchivo.c_str(), "r");
+
   if(archivo1 == NULL ){
     printf(" No se puede abrir el archivo ");
     exit(1);
@@ -42,6 +41,8 @@ int LeeArchivo(string cantidadNumeros){
   for (int i=0; !feof(archivo1); i++) {
     fscanf (archivo1, "%i", &entrada.valor);
     lista[i]=entrada.valor;
+    cout<<lista[i]<<endl;
+    cout<<cn<<" dentro del leer"<<endl;
     cn++;
   }
   salvacn=cn;
@@ -65,9 +66,11 @@ int guardarArchivoOrdenado(string cantidadNumeros, string nombreOrdenamiento){
   }
 
   cn=salvacn;
+  cout<<cn<<" dentro del guardar"<<endl;
   salvacn=0;
   for (i=0; i<cn; i++) {
     entrada1.valor1=lista[i];
+    cout<<lista[i]<<" lista dentro del guardar"<<endl;
     fprintf(archivoSalida, "%i\n", entrada1.valor1);
     salvacn++;
   }
