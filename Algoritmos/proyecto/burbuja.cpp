@@ -19,12 +19,61 @@ int i=0, j=0, k=0, n=0, cn=0, salvacn;
 int lista[1000000];
 
 int LeeArchivo(string);
-void OrdenamientoBurbuja();
 int guardarArchivoOrdenado(string, string);
 string ordenamientoAElegir();
 
+//Funciones de ordenamientos
+void OrdenamientoBurbuja();
+void ordenamientoBurbujaBidireccional();
+
+
 clock_t t_ini, t_fin;
 double secs;
+
+int main(){
+  int opcion;
+  string cantidadNumeros;
+  cout<<"Escoge un ordenamiento\n";
+  cout<<"\t1. Burbuja\n";
+  cout<<"\t2. Burbuja balanceado\n";
+  cout<<"\t3. Inserción\n";
+  cout<<"\t4. Casilleros\n";
+  cout<<"\t5. Cuentas\n";
+  cout<<"\t6. Mezcla\n";
+  cout<<"\t7. Árbol binario\n";
+  cout<<"\t8. Radix\n";
+
+  cout<<"Ingrese el ordenamiento deseado: "; cin>>opcion;
+  // se obtiene un string para saber el tipo de ordenamiento que se va a usar
+  string nombreOrdenamiento = ordenamientoAElegir(opcion);
+  cout<<"¿Cuantos valores quieres ordenar? (10/100/1,000/10,000/100,000/1'000,000): ";
+  cin>>cantidadNumeros;
+  
+  //Se da por hecho de que el archivo que se leerá será el que se encuentra
+  //en esta carpeta
+  LeeArchivo(cantidadNumeros);
+  
+  // Inicia area de medicion de tiempo
+  switch(opcion) {
+    case 1:
+      t_ini = clock(); // almacena tiempo inicial
+      OrdenamientoBurbuja(); // realiza el ordenamiento
+      t_fin = clock(); // almacena tiempo final
+    break;
+    case 2:
+      t_ini = clock(); // almacena tiempo inicial
+      ordenamientoBurbujaBidireccional(); // realiza el ordenamiento
+      t_fin = clock(); // almacena tiempo final
+    break;
+  }
+  // Termina area de medicion de tiempo
+
+  secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
+  printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
+  guardarArchivoOrdenado(cantidadNumeros, nombreOrdenamiento);
+  return 0;
+}
+
 
 int LeeArchivo(string cantidadNumeros){
   FILE *archivo1;
@@ -77,10 +126,10 @@ int guardarArchivoOrdenado(string cantidadNumeros, string nombreOrdenamiento){
 string ordenamientoAElegir(int opcion){
   switch (opcion) {
     case 1:
-      return "burbuja";
+      return "_burbuja";
     break;
     case 2:
-      return "burbuja no sé qué";
+      return "_burbuja_bidireccional";
     break;
     default:
       cout<<"No encontré esa opción, repita de nuevo";
@@ -89,7 +138,7 @@ string ordenamientoAElegir(int opcion){
 }
 
 void OrdenamientoBurbuja (){
-
+  cout<<"Se inica el ordenamiento burbuja"<<endl;
   int i, j, aux;
   for(i=1;i<cn;i++){
 		for(j=0;j<cn-i;j++){
@@ -102,44 +151,29 @@ void OrdenamientoBurbuja (){
 	}
 }
 
-int main(){
-  int opcion;
-  string cantidadNumeros;
-  cout<<"Escoge un ordenamiento\n";
-  cout<<"\t1. Burbuja\n";
-  cout<<"\t2. Burbuja balanceado\n";
-  cout<<"\t3. Inserción\n";
-  cout<<"\t4. Casilleros\n";
-  cout<<"\t5. Cuentas\n";
-  cout<<"\t6. Mezcla\n";
-  cout<<"\t7. Árbol binario\n";
-  cout<<"\t8. Radix\n";
+void ordenamientoBurbujaBidireccional() {
+  cout<<"Se inica el ordenamiento burbuja bidireccional"<<endl;
+  int lado_izq = 0, lado_derecho, aux;
+  lado_derecho = cn-2;
 
-  cout<<"Ingrese el ordenamiento deseado: "; cin>>opcion;
-  // se obtiene un string para saber el tipo de ordenamiento que se va a usar
-  string nombreOrdenamiento = ordenamientoAElegir(opcion);
-  cout<<"¿Cuantos valores quieres ordenar? (10/100/1,000/10,000/100,000/1'000,000): ";
-  cin>>cantidadNumeros;
-  
-  //Se da por hecho de que el archivo que se leerá será el que se encuentra
-  //en esta carpeta
-  LeeArchivo(cantidadNumeros);
-  
-  // Inicia area de medicion de tiempo
-  switch(opcion) {
-    case 1:
-      t_ini = clock(); // almacena tiempo inicial
-      OrdenamientoBurbuja(); // realiza el ordenamiento
-      t_fin = clock(); // almacena tiempo final
-    break;
-    case 2:
+  do {
+    for(int j = lado_izq+1; j<=lado_derecho; j++) {
+      if(lista[j-1] > lista[j]) {
+        aux = lista[j];
+        lista[j] = lista[j-1];
+        lista[j-1] = aux;
+      }
+    }
+    lado_derecho -= 1;
+    for(int i = lado_derecho; i>lado_izq; i--) {
+      if(lista[i-1] > lista[i]) {
+        aux = lista[i];
+        lista[i] = lista[i-1];
+        lista[i-1] = aux;
+      }
+    }
+    lado_izq +=1;
+  } while(lado_derecho>= lado_izq);
 
-    break;
-  }
-  // Termina area de medicion de tiempo
-
-  secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
-  printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
-  guardarArchivoOrdenado(cantidadNumeros, nombreOrdenamiento);
-  return 0;
 }
+
