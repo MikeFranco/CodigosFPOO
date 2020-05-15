@@ -235,27 +235,27 @@ void ordenamientoBurbujaBidireccional() {
 }
 
 void ordenamientoInsercion() {
-  int bandera = 0;
+  cout<<"Se inica el ordenamiento por insercion"<<endl;
 }
 
 
 void ordenamientoCasilleros() {
-  int bandera = 0;
+  cout<<"Se inica el ordenamiento por casilleros"<<endl;
 }
 
 
 void ordenamientoCuentas() {
-  int bandera = 0;
+  cout<<"Se inica el ordenamiento por cuentas"<<endl;
 }
 
 void ordenamientoMezcla() {
-  int bandera = 0;
+  cout<<"Se inica el ordenamiento mezcla"<<endl;
 }
 
 void ordenamientoArbolBinario() {
-  int bandera = 0;
+  cout<<"Se inica el ordenamiento arbol binario"<<endl;
 }
 
 void ordenamientoRadix() {
-  int bandera = 0;
+  cout<<"Se inica el ordenamiento radix"<<endl;
 }
