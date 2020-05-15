@@ -20,11 +20,17 @@ int lista[1000000];
 
 int LeeArchivo(string);
 int guardarArchivoOrdenado(string, string);
-string ordenamientoAElegir();
+string ordenamientoAElegir(int);
 
 //Funciones de ordenamientos
 void OrdenamientoBurbuja();
 void ordenamientoBurbujaBidireccional();
+void ordenamientoInsercion();
+void ordenamientoCasilleros();
+void ordenamientoCuentas();
+void ordenamientoMezcla();
+void ordenamientoArbolBinario();
+void ordenamientoRadix();
 
 
 clock_t t_ini, t_fin;
@@ -36,11 +42,11 @@ int main(){
   cout<<"Escoge un ordenamiento\n";
   cout<<"\t1. Burbuja\n";
   cout<<"\t2. Burbuja balanceado\n";
-  cout<<"\t3. Inserción\n";
+  cout<<"\t3. Insercion\n";
   cout<<"\t4. Casilleros\n";
   cout<<"\t5. Cuentas\n";
   cout<<"\t6. Mezcla\n";
-  cout<<"\t7. Árbol binario\n";
+  cout<<"\t7. Arbol binario\n";
   cout<<"\t8. Radix\n";
 
   cout<<"Ingrese el ordenamiento deseado: "; cin>>opcion;
@@ -53,20 +59,48 @@ int main(){
   //en esta carpeta
   LeeArchivo(cantidadNumeros);
   
-  // Inicia area de medicion de tiempo
   switch(opcion) {
     case 1:
-      t_ini = clock(); // almacena tiempo inicial
-      OrdenamientoBurbuja(); // realiza el ordenamiento
-      t_fin = clock(); // almacena tiempo final
+      t_ini = clock();
+      OrdenamientoBurbuja();
+      t_fin = clock();
     break;
     case 2:
-      t_ini = clock(); // almacena tiempo inicial
-      ordenamientoBurbujaBidireccional(); // realiza el ordenamiento
-      t_fin = clock(); // almacena tiempo final
+      t_ini = clock();
+      ordenamientoBurbujaBidireccional();
+      t_fin = clock();
+    break;
+    case 3:
+      t_ini = clock();
+      ordenamientoInsercion();
+      t_fin = clock();
+    break;
+    case 4:
+      t_ini = clock();
+      ordenamientoCasilleros();
+      t_fin = clock();
+    break;
+    case 5:
+      t_ini = clock();
+      ordenamientoCuentas();
+      t_fin = clock();
+    break;
+    case 6:
+      t_ini = clock();
+      ordenamientoMezcla();
+      t_fin = clock();
+    break;
+    case 7:
+      t_ini = clock();
+      ordenamientoArbolBinario();
+      t_fin = clock();
+    break;
+    case 8:
+      t_ini = clock();
+      ordenamientoRadix();
+      t_fin = clock();
     break;
   }
-  // Termina area de medicion de tiempo
 
   secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
   printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
@@ -131,8 +165,27 @@ string ordenamientoAElegir(int opcion){
     case 2:
       return "_burbuja_bidireccional";
     break;
+    case 3:
+      return "_insercion";
+    break;
+    case 4:
+      return "_casilleros";
+    break;
+    case 5:
+      return "_cuentas";
+    break;
+    case 6:
+      return "_mezcla";
+    break;
+    case 7:
+      return "_arbol_binario";
+    break;
+    case 8:
+      return "_radix";
+    break;
     default:
-      cout<<"No encontré esa opción, repita de nuevo";
+      cout<<"No encontré esa opción, repita de nuevo"<<endl;
+      exit(1);
     break;
   }
 }
@@ -177,3 +230,28 @@ void ordenamientoBurbujaBidireccional() {
 
 }
 
+void ordenamientoInsercion() {
+  int bandera = 0;
+}
+
+
+void ordenamientoCasilleros() {
+  int bandera = 0;
+}
+
+
+void ordenamientoCuentas() {
+  int bandera = 0;
+}
+
+void ordenamientoMezcla() {
+  int bandera = 0;
+}
+
+void ordenamientoArbolBinario() {
+  int bandera = 0;
+}
+
+void ordenamientoRadix() {
+  int bandera = 0;
+}
