@@ -235,7 +235,17 @@ void ordenamientoBurbujaBidireccional() {
 }
 
 void ordenamientoInsercion() {
+  int indice;
   cout<<"Se inica el ordenamiento por insercion"<<endl;
+  for(int i = 0; i < cn; i++) {
+    indice = lista[i]; //k es el indice
+    j = i-1;
+    while(j >= 0 && lista[j] > indice) {
+      lista[j+1] = lista[j];
+      j--;
+    }
+    lista[j+1] = indice;
+  }
 }
 
 
