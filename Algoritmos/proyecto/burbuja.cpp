@@ -21,6 +21,7 @@ int lista[1000000];
 int LeeArchivo(string);
 int guardarArchivoOrdenado(string, string);
 string ordenamientoAElegir(int);
+void iniciarOrdenamientos(int);
 
 //Funciones de ordenamientos
 void OrdenamientoBurbuja();
@@ -31,14 +32,13 @@ void ordenamientoCuentas();
 void ordenamientoMezcla();
 void ordenamientoArbolBinario();
 void ordenamientoRadix();
-
-
 clock_t t_ini, t_fin;
-double secs;
 
 int main(){
   int opcion;
   string cantidadNumeros;
+  double secs;
+
   cout<<"Escoge un ordenamiento\n";
   cout<<"\t1. Burbuja\n";
   cout<<"\t2. Burbuja balanceado\n";
@@ -59,49 +59,8 @@ int main(){
   //en esta carpeta
   LeeArchivo(cantidadNumeros);
   
-  switch(opcion) {
-    case 1:
-      t_ini = clock();
-      OrdenamientoBurbuja();
-      t_fin = clock();
-    break;
-    case 2:
-      t_ini = clock();
-      ordenamientoBurbujaBidireccional();
-      t_fin = clock();
-    break;
-    case 3:
-      t_ini = clock();
-      ordenamientoInsercion();
-      t_fin = clock();
-    break;
-    case 4:
-      t_ini = clock();
-      ordenamientoCasilleros();
-      t_fin = clock();
-    break;
-    case 5:
-      t_ini = clock();
-      ordenamientoCuentas();
-      t_fin = clock();
-    break;
-    case 6:
-      t_ini = clock();
-      ordenamientoMezcla();
-      t_fin = clock();
-    break;
-    case 7:
-      t_ini = clock();
-      ordenamientoArbolBinario();
-      t_fin = clock();
-    break;
-    case 8:
-      t_ini = clock();
-      ordenamientoRadix();
-      t_fin = clock();
-    break;
-  }
-
+  iniciarOrdenamientos(opcion);
+  
   secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
   printf("%.16g milisegundos\n", secs * 1000.0); // muestra el tiempo utilizado
   guardarArchivoOrdenado(cantidadNumeros, nombreOrdenamiento);
@@ -190,6 +149,51 @@ string ordenamientoAElegir(int opcion){
   }
 }
 
+void iniciarOrdenamientos (int opcion) {
+  switch(opcion) {
+    case 1:
+      t_ini = clock();
+      OrdenamientoBurbuja();
+      t_fin = clock();
+    break;
+    case 2:
+      t_ini = clock();
+      ordenamientoBurbujaBidireccional();
+      t_fin = clock();
+    break;
+    case 3:
+      t_ini = clock();
+      ordenamientoInsercion();
+      t_fin = clock();
+    break;
+    case 4:
+      t_ini = clock();
+      ordenamientoCasilleros();
+      t_fin = clock();
+    break;
+    case 5:
+      t_ini = clock();
+      ordenamientoCuentas();
+      t_fin = clock();
+    break;
+    case 6:
+      t_ini = clock();
+      ordenamientoMezcla();
+      t_fin = clock();
+    break;
+    case 7:
+      t_ini = clock();
+      ordenamientoArbolBinario();
+      t_fin = clock();
+    break;
+    case 8:
+      t_ini = clock();
+      ordenamientoRadix();
+      t_fin = clock();
+    break;
+  }
+
+}
 void OrdenamientoBurbuja (){
   cout<<"Se inica el ordenamiento burbuja"<<endl;
   int i, j, aux;
