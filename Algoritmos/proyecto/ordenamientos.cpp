@@ -74,8 +74,7 @@ int main()
   return 0;
 }
 
-int LeeArchivo(string cantidadNumeros)
-{
+int LeeArchivo(string cantidadNumeros){
   FILE *archivo1;
   string nombrearchivo = "num" + cantidadNumeros + ".txt";
   archivo1 = fopen(nombrearchivo.c_str(), "r");
