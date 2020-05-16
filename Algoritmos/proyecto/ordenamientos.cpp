@@ -32,8 +32,11 @@ void ordenamientoInsercion();
 void ordenamientoCasilleros();
 void ordenamientoCuentas();
 void ordenamientoMezcla(int, int, int);
+void mezclarMitades(int, int, int);
 void ordenamientoArbolBinario();
 void ordenamientoRadix();
+
+
 clock_t t_ini, t_fin;
 
 int main()
