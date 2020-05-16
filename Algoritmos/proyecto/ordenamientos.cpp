@@ -32,7 +32,7 @@ void ordenamientoInsercion();
 void ordenamientoCasilleros();
 void ordenamientoCuentas();
 void ordenamientoMezcla(int, int, int);
-void mezclarMitades(int, int, int);
+void mezclarMitades(int*, int, int, int);
 void ordenamientoArbolBinario();
 void ordenamientoRadix();
 
@@ -196,8 +196,9 @@ void iniciarOrdenamientos(int opcion)
     t_fin = clock();
     break;
   case 6:
+    cn = cn-1;
     t_ini = clock();
-    ordenamientoMezcla(lista, 0, cn - 1);
+    ordenamientoMezcla(lista, 0, cn);
     t_fin = clock();
     break;
   case 7:
