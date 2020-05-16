@@ -177,6 +177,10 @@ int main(){
    ArbolInt.InOrden(Mostrar);
    cout << endl;
 
+   for (int i = 0; i < cn; i++){
+      lista[i];
+   }
+
    cin.get();
    return 0;
 }

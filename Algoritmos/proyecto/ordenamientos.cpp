@@ -108,13 +108,11 @@ int guardarArchivoOrdenado(string cantidadNumeros, string nombreOrdenamiento)
 
   archivoSalida = fopen(nombreArchivoSalida.c_str(), "w");
 
-  if (archivoSalida == NULL)
-  {
+  if (archivoSalida == NULL){
     printf(" El archivo no se abrio. ");
     exit(1);
   }
-  else
-  {
+  else{
     printf(" Se abrio el archivo correctamente %s\n ", nombreArchivoSalida.c_str());
   }
 
