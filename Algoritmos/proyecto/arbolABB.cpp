@@ -21,7 +21,7 @@ struct Entrada1
 } entrada1;
 
 int i = 0, j = 0, k = 0, n = 0, cn = 0, salvacn;
-
+clock_t t_ini, t_fin;
 int lista[1000000];
 
 int LeeArchivo(string);
@@ -58,12 +58,11 @@ int LeeArchivo(string cantidadNumeros){
 int guardarArchivoOrdenado(string cantidadNumeros)
 {
   FILE *archivoSalida;
-  string nombreArchivoSalida = "num" + cantidadNumeros + "_arbol_binario" + ".txt";
+  string nombreArchivoSalida = "num" + cantidadNumeros + "_arbol_binario.txt";
 
   archivoSalida = fopen(nombreArchivoSalida.c_str(), "w");
 
-  if (archivoSalida == NULL)
-  {
+  if (archivoSalida == NULL){
     printf(" El archivo no se abrio. ");
     exit(1);
   }
@@ -161,6 +160,7 @@ void Mostrar(int &d){
 
 int main(){
   string cantidadNumeros;
+  double secs;
   cout << "¿Cuantos valores quieres ordenar? (10/100/1,000/10,000/100,000/1'000,000): ";
   cin >> cantidadNumeros;
   LeeArchivo(cantidadNumeros);
@@ -171,16 +171,16 @@ int main(){
    for (int i = 0; i < cn; i++){
       ArbolInt.Insertar(lista[i]);
    }
-
    // Mostrar el �rbol en tres ordenes distintos:
    cout << "InOrden: ";
+   t_ini = clock();
    ArbolInt.InOrden(Mostrar);
+   t_fin = clock();
    cout << endl;
 
-   for (int i = 0; i < cn; i++){
-      lista[i];
-   }
-
+   secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
+   printf("%.16g milisegundos\n", secs * 1000.0);           // muestra el tiempo utilizado
+   guardarArchivoOrdenado(cantidadNumeros);
    cin.get();
    return 0;
 }
