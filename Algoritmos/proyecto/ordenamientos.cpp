@@ -31,7 +31,7 @@ void ordenamientoBurbujaBidireccional();
 void ordenamientoInsercion();
 void ordenamientoCasilleros();
 void ordenamientoCuentas();
-void ordenamientoMezcla(int, int, int);
+void ordenamientoMezcla(int*, int, int);
 void mezclarMitades(int*, int, int, int);
 void ordenamientoArbolBinario();
 void ordenamientoRadix();
@@ -196,6 +196,7 @@ void iniciarOrdenamientos(int opcion)
     t_fin = clock();
     break;
   case 6:
+    cout << "Se inicia el ordenamiento mezcla" << endl;
     cn = cn-1;
     t_ini = clock();
     ordenamientoMezcla(lista, 0, cn);
@@ -287,9 +288,7 @@ void ordenamientoCuentas()
   cout << "Se inicia el ordenamiento por cuentas" << endl;
 }
 
-void ordenamientoMezcla(int *a, int low, int high)
-{
-  cout << "Se inicia el ordenamiento mezcla" << endl;
+void ordenamientoMezcla(int *a, int low, int high){
   int mid;
 
   if (low < high)
