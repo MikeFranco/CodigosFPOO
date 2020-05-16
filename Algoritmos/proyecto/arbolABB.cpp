@@ -88,7 +88,6 @@ using namespace std;
 
 class ArbolABB {
   private:
-   //// Clase local de Lista para Nodo de ArbolBinario:
    class Nodo {
      public:
       // Constructor:
@@ -110,23 +109,12 @@ class ArbolABB {
    ArbolABB() : raiz(NULL), actual(NULL) {}
    // Insertar en �rbol ordenado:
    void Insertar(const int dat);
-   // Funci�n de b�squeda:
-   bool Buscar(const int dat);
    // Comprobar si el �rbol est� vac�o:
    bool Vacio(Nodo *r) { return r==NULL; }
-   // Comprobar si es un nodo hoja:
-   bool EsHoja(Nodo *r) { return !r->derecho && !r->izquierdo; }
-   // Contar n�mero de nodos:
-   const int NumeroNodos();
-   // Devolver referencia al int del nodo actual:
-   int &ValorActual() { return actual->dato; }
    // Moverse al nodo raiz:
    void Raiz() { actual = raiz; }
    // Aplicar una funci�n a cada elemento del �rbol:
    void InOrden(void (*func)(int&) , Nodo *nodo=NULL, bool r=true);
-  private:
-   // Funciones auxiliares
-   void auxContador(Nodo*);
 };
 
 
@@ -159,46 +147,11 @@ void ArbolABB::Insertar(const int dat)
 // Recorrido de �rbol en inorden, aplicamos la funci�n func, que tiene
 // el prototipo:
 // void func(int&);
-void ArbolABB::InOrden(void (*func)(int&) , Nodo *nodo, bool r)
-{
+void ArbolABB::InOrden(void (*func)(int&) , Nodo *nodo, bool r){
    if(r) nodo = raiz;
    if(nodo->izquierdo) InOrden(func, nodo->izquierdo, false);
    func(nodo->dato);
    if(nodo->derecho) InOrden(func, nodo->derecho, false);
-}
-
-
-// Buscar un valor en el �rbol
-bool ArbolABB::Buscar(const int dat)
-{
-   actual = raiz;
-
-   // Todav�a puede aparecer, ya que quedan nodos por mirar
-   while(!Vacio(actual)) {
-      if(dat == actual->dato) return true; // int encontrado
-      else if(dat > actual->dato) actual = actual->derecho; // Seguir
-      else if(dat < actual->dato) actual = actual->izquierdo;
-   }
-   return false; // No est� en �rbol
-}
-
-// Contar el n�mero de nodos
-const int ArbolABB::NumeroNodos()
-{
-   contador = 0;
-
-   auxContador(raiz); // FUnci�n auxiliar
-   return contador;
-}
-
-// Funci�n auxiliar para contar nodos. Funci�n recursiva de recorrido en
-//   preorden, el proceso es aumentar el contador
-void ArbolABB::auxContador(Nodo *nodo)
-{
-   contador++;  // Otro nodo
-   // Continuar recorrido
-   if(nodo->izquierdo) auxContador(nodo->izquierdo);
-   if(nodo->derecho)   auxContador(nodo->derecho);
 }
 
 // Funci�n de prueba para recorridos del �rbol
