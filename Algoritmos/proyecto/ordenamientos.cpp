@@ -51,10 +51,10 @@ int main()
   cout << "\t2. Burbuja balanceado\n";
   cout << "\t3. Insercion\n";
   cout << "\t4. Casilleros\n";
-  cout << "\t5. Cuentas\n";
+  cout << "\t5. Cuentas\n";//********
   cout << "\t6. Mezcla\n";
-  cout << "\t7. Radix\n";
-  //Nota: el ordenamiento de arbol binario está en un archivo diferente
+  cout << "\t7. Radix\n";//********
+  cout<<"Nota: el ordenamiento de arbol binario está en un archivo diferente";
 
   cout << "Ingrese el ordenamiento deseado: ";
   cin >> opcion;

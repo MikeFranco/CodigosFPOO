@@ -113,9 +113,8 @@ class ArbolABB {
    // Moverse al nodo raiz:
    void Raiz() { actual = raiz; }
    // Aplicar una funci�n a cada elemento del �rbol:
-   void InOrden(Nodo *nodo=NULL, bool r=true);
+   void InOrden(void (*func)(int&) ,Nodo *nodo=NULL, bool r=true);
 };
-
 
 // Insertar un int en el �rbol ABB
 void ArbolABB::Insertar(const int dat)
@@ -146,10 +145,16 @@ void ArbolABB::Insertar(const int dat)
 // Recorrido de �rbol en inorden, aplicamos la funci�n func, que tiene
 // el prototipo:
 // void func(int&);
-void ArbolABB::InOrden(Nodo *nodo, bool r){
-   if(r) nodo = raiz;
-   if(nodo->izquierdo) InOrden(nodo->izquierdo, false);
-   if(nodo->derecho) InOrden(nodo->derecho, false);
+void ArbolABB::InOrden(void (*func)(int&) ,Nodo *nodo, bool r){
+  if(r) nodo = raiz;
+  if(nodo->izquierdo) InOrden(func, nodo->izquierdo, false);
+  func(nodo->dato);
+  if(nodo->derecho) InOrden(func, nodo->derecho, false);
+}
+
+void guardarOrden(int &d) {
+  lista[i] = d;
+  i++;
 }
 
 int main(){
@@ -159,18 +164,18 @@ int main(){
   cin >> cantidadNumeros;
   LeeArchivo(cantidadNumeros);
 
-   ArbolABB ArbolInt;
+  ArbolABB ArbolInt;
 
-   // Inserci�n de nodos en �rbol:
-   for (int i = 0; i < cn; i++){
-      ArbolInt.Insertar(lista[i]);
-   }
-   // Mostrar el �rbol en tres ordenes distintos:
-   cout << "InOrden: ";
-   t_ini = clock();
-   ArbolInt.InOrden();
-   t_fin = clock();
-   cout << endl;
+  // Inserci�n de nodos en �rbol:
+  for (int i = 0; i < cn; i++){
+    ArbolInt.Insertar(lista[i]);
+  }
+  // Mostrar el �rbol en tres ordenes distintos:
+  cout << "InOrden: ";
+  t_ini = clock();
+  ArbolInt.InOrden(guardarOrden);
+  t_fin = clock();
+  cout << endl;
 
    secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
    printf("%.16g milisegundos\n", secs * 1000.0);           // muestra el tiempo utilizado
