@@ -113,7 +113,7 @@ class ArbolABB {
    // Moverse al nodo raiz:
    void Raiz() { actual = raiz; }
    // Aplicar una funci�n a cada elemento del �rbol:
-   void InOrden(void (*func)(int&) , Nodo *nodo=NULL, bool r=true);
+   void InOrden(Nodo *nodo=NULL, bool r=true);
 };
 
 
@@ -146,16 +146,10 @@ void ArbolABB::Insertar(const int dat)
 // Recorrido de �rbol en inorden, aplicamos la funci�n func, que tiene
 // el prototipo:
 // void func(int&);
-void ArbolABB::InOrden(void (*func)(int&) , Nodo *nodo, bool r){
+void ArbolABB::InOrden(Nodo *nodo, bool r){
    if(r) nodo = raiz;
-   if(nodo->izquierdo) InOrden(func, nodo->izquierdo, false);
-   func(nodo->dato);
-   if(nodo->derecho) InOrden(func, nodo->derecho, false);
-}
-
-// Funci�n de prueba para recorridos del �rbol
-void Mostrar(int &d){
-   cout << d << ",";
+   if(nodo->izquierdo) InOrden(nodo->izquierdo, false);
+   if(nodo->derecho) InOrden(nodo->derecho, false);
 }
 
 int main(){
@@ -174,7 +168,7 @@ int main(){
    // Mostrar el �rbol en tres ordenes distintos:
    cout << "InOrden: ";
    t_ini = clock();
-   ArbolInt.InOrden(Mostrar);
+   ArbolInt.InOrden();
    t_fin = clock();
    cout << endl;
 
