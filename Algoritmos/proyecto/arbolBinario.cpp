@@ -2,9 +2,9 @@
 // (C) Abril 2002, Salvador Pozo
 // C con Clase: http://c.conclase.net
 
+#include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include <iostream>
 #include <fstream>
 #include <time.h>
 #include <string>
@@ -83,8 +83,6 @@ int guardarArchivoOrdenado(string cantidadNumeros)
   return (0);
 }
 
-using namespace std;
-
 class ArbolABB {
   private:
    class Nodo {
@@ -113,7 +111,7 @@ class ArbolABB {
    // Moverse al nodo raiz:
    void Raiz() { actual = raiz; }
    // Aplicar una funci�n a cada elemento del �rbol:
-   void InOrden(void (*func)(int&) ,Nodo *nodo=NULL, bool r=true);
+   void InOrden(void (*func)(int&) , Nodo *nodo=NULL, bool r=true);
 };
 
 // Insertar un int en el �rbol ABB
@@ -174,7 +172,7 @@ int main(){
   cout << "InOrden: ";
   t_ini = clock();
   ArbolInt.InOrden(guardarOrden);
-  t_fin = clock();
+  t_ini = clock();
   cout << endl;
 
    secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados

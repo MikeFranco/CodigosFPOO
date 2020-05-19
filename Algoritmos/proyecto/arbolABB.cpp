@@ -1,9 +1,88 @@
-// Plantilla de Arbol Binario de Búsqueda en C++
+// Plantilla de Arbol Binario de Bï¿½squeda en C++
 // (C) Abril 2002, Salvador Pozo
 // C con Clase: http://c.conclase.net
 
 #include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <fstream>
+#include <time.h>
+#include <string>
 using namespace std;
+
+struct Entrada
+{
+  int valor;
+} entrada;
+
+struct Entrada1
+{
+  int valor1;
+} entrada1;
+
+int i = 0, j = 0, k = 0, n = 0, cn = 0, salvacn;
+clock_t t_ini, t_fin;
+int lista[1000000];
+
+int LeeArchivo(string);
+int guardarArchivoOrdenado(string);
+
+
+int LeeArchivo(string cantidadNumeros){
+  FILE *archivo1;
+  string nombrearchivo = "num" + cantidadNumeros + ".txt";
+  archivo1 = fopen(nombrearchivo.c_str(), "r");
+
+  if (archivo1 == NULL)
+  {
+    printf(" No se puede abrir el archivo ");
+    exit(1);
+  }
+  else
+  {
+    cout << " Se abrio el archivo correctamente \n";
+  }
+  cn = 0;
+  for (int i = 0; !feof(archivo1); i++)
+  {
+    fscanf(archivo1, "%i", &entrada.valor);
+    lista[i] = entrada.valor;
+    cn++;
+  }
+  salvacn = cn - 1; //se pone un -1 porque cuando se termina el for de la lÃ­nea 46,
+  //al pasar al guardar archivo, el contador toma en cuenta el feof
+  fclose(archivo1);
+  return (0);
+}
+
+int guardarArchivoOrdenado(string cantidadNumeros)
+{
+  FILE *archivoSalida;
+  string nombreArchivoSalida = "num" + cantidadNumeros + "_arbol_binario.txt";
+
+  archivoSalida = fopen(nombreArchivoSalida.c_str(), "w");
+
+  if (archivoSalida == NULL){
+    printf(" El archivo no se abrio. ");
+    exit(1);
+  }
+  else
+  {
+    printf(" Se abrio el archivo correctamente %s\n ", nombreArchivoSalida.c_str());
+  }
+
+  cn = salvacn;
+  salvacn = 0;
+  for (i = 0; i < cn; i++)
+  {
+    entrada1.valor1 = lista[i];
+    fprintf(archivoSalida, "%i\n", entrada1.valor1);
+    salvacn++;
+  }
+  fclose(archivoSalida);
+  return (0);
+}
+
 
 class ArbolABB {
   private:
@@ -26,20 +105,20 @@ class ArbolABB {
    int altura;
 
   public:
-   // Constructor y destructor básicos:
+   // Constructor y destructor bï¿½sicos:
    ArbolABB() : raiz(NULL), actual(NULL) {}
    ~ArbolABB() { Podar(raiz); }
-   // Insertar en árbol ordenado:
+   // Insertar en ï¿½rbol ordenado:
    void Insertar(const int dat);
-   // Borrar un elemento del árbol:
+   // Borrar un elemento del ï¿½rbol:
    void Borrar(const int dat);
-   // Función de búsqueda:
+   // Funciï¿½n de bï¿½squeda:
    bool Buscar(const int dat);
-   // Comprobar si el árbol está vacío:
+   // Comprobar si el ï¿½rbol estï¿½ vacï¿½o:
    bool Vacio(Nodo *r) { return r==NULL; }
    // Comprobar si es un nodo hoja:
    bool EsHoja(Nodo *r) { return !r->derecho && !r->izquierdo; }
-   // Contar número de nodos:
+   // Contar nï¿½mero de nodos:
    const int NumeroNodos();
    const int AlturaArbol();
    // Calcular altura de un int:
@@ -48,7 +127,7 @@ class ArbolABB {
    int &ValorActual() { return actual->dato; }
    // Moverse al nodo raiz:
    void Raiz() { actual = raiz; }
-   // Aplicar una función a cada elemento del árbol:
+   // Aplicar una funciï¿½n a cada elemento del ï¿½rbol:
    void InOrden(void (*func)(int&) , Nodo *nodo=NULL, bool r=true);
    void PreOrden(void (*func)(int&) , Nodo *nodo=NULL, bool r=true);
    void PostOrden(void (*func)(int&) , Nodo *nodo=NULL, bool r=true);
@@ -71,13 +150,13 @@ void ArbolABB::Podar(Nodo* &nodo)
    }
 }
 
-// Insertar un int en el árbol ABB
+// Insertar un int en el ï¿½rbol ABB
 void ArbolABB::Insertar(const int dat)
 {
    Nodo *padre = NULL;
 
    actual = raiz;
-   // Buscar el int en el árbol, manteniendo un puntero al nodo padre
+   // Buscar el int en el ï¿½rbol, manteniendo un puntero al nodo padre
    while(!Vacio(actual) && dat != actual->dato) {
       padre = actual;
       if(dat > actual->dato) actual = actual->derecho;
@@ -86,7 +165,7 @@ void ArbolABB::Insertar(const int dat)
 
    // Si se ha encontrado el elemento, regresar sin insertar
    if(!Vacio(actual)) return;
-   // Si padre es NULL, entonces el árbol estaba vacío, el nuevo nodo será
+   // Si padre es NULL, entonces el ï¿½rbol estaba vacï¿½o, el nuevo nodo serï¿½
    // el nodo raiz
    if(Vacio(padre)) raiz = new Nodo(dat);
    // Si el int es menor que el que contiene el nodo padre, lo insertamos
@@ -97,7 +176,7 @@ void ArbolABB::Insertar(const int dat)
    else if(dat > padre->dato) padre->derecho = new Nodo(dat);
 }
 
-// Eliminar un elemento de un árbol ABB
+// Eliminar un elemento de un ï¿½rbol ABB
 void ArbolABB::Borrar(const int dat)
 {
    Nodo *padre = NULL;
@@ -105,10 +184,10 @@ void ArbolABB::Borrar(const int dat)
    int aux;
 
    actual = raiz;
-   // Mientras sea posible que el valor esté en el árbol
+   // Mientras sea posible que el valor estï¿½ en el ï¿½rbol
    while(!Vacio(actual)) {
-      if(dat == actual->dato) { // Si el valor está en el nodo actual
-         if(EsHoja(actual)) { // Y si además es un nodo hoja: lo borramos
+      if(dat == actual->dato) { // Si el valor estï¿½ en el nodo actual
+         if(EsHoja(actual)) { // Y si ademï¿½s es un nodo hoja: lo borramos
             if(padre) // Si tiene padre (no es el nodo raiz)
                // Anulamos el puntero que le hace referencia
                if(padre->derecho == actual) padre->derecho = NULL;
@@ -117,10 +196,10 @@ void ArbolABB::Borrar(const int dat)
             actual = NULL;
             return;
          }
-         else { // Si el valor está en el nodo actual, pero no es hoja
+         else { // Si el valor estï¿½ en el nodo actual, pero no es hoja
             // Buscar nodo
             padre = actual;
-            // Buscar nodo más izquierdo de rama derecha
+            // Buscar nodo mï¿½s izquierdo de rama derecha
             if(actual->derecho) {
                nodo = actual->derecho;
                while(nodo->izquierdo) {
@@ -128,7 +207,7 @@ void ArbolABB::Borrar(const int dat)
                   nodo = nodo->izquierdo;
                }
             }
-            // O buscar nodo más derecho de rama izquierda
+            // O buscar nodo mï¿½s derecho de rama izquierda
             else {
                nodo = actual->izquierdo;
                while(nodo->derecho) {
@@ -138,15 +217,15 @@ void ArbolABB::Borrar(const int dat)
             }
             // Intercambiar valores de no a borrar u nodo encontrado
             // y continuar, cerrando el bucle. El nodo encontrado no tiene
-            // por qué ser un nodo hoja, cerrando el bucle nos aseguramos
-            // de que sólo se eliminan nodos hoja.
+            // por quï¿½ ser un nodo hoja, cerrando el bucle nos aseguramos
+            // de que sï¿½lo se eliminan nodos hoja.
             aux = actual->dato;
             actual->dato = nodo->dato;
             nodo->dato = aux;
             actual = nodo;
          }
       }
-      else { // Todavía no hemos encontrado el valor, seguir buscándolo
+      else { // Todavï¿½a no hemos encontrado el valor, seguir buscï¿½ndolo
          padre = actual;
          if(dat > actual->dato) actual = actual->derecho;
          else if(dat < actual->dato) actual = actual->izquierdo;
@@ -154,7 +233,7 @@ void ArbolABB::Borrar(const int dat)
    }
 }
 
-// Recorrido de árbol en inorden, aplicamos la función func, que tiene
+// Recorrido de ï¿½rbol en inorden, aplicamos la funciï¿½n func, que tiene
 // el prototipo:
 // void func(int&);
 void ArbolABB::InOrden(void (*func)(int&) , Nodo *nodo, bool r)
@@ -165,7 +244,7 @@ void ArbolABB::InOrden(void (*func)(int&) , Nodo *nodo, bool r)
    if(nodo->derecho) InOrden(func, nodo->derecho, false);
 }
 
-// Recorrido de árbol en preorden, aplicamos la función func, que tiene
+// Recorrido de ï¿½rbol en preorden, aplicamos la funciï¿½n func, que tiene
 // el prototipo:
 // void func(int&);
 void ArbolABB::PreOrden(void (*func)(int&), Nodo *nodo, bool r)
@@ -176,7 +255,7 @@ void ArbolABB::PreOrden(void (*func)(int&), Nodo *nodo, bool r)
    if(nodo->derecho) PreOrden(func, nodo->derecho, false);
 }
 
-// Recorrido de árbol en postorden, aplicamos la función func, que tiene
+// Recorrido de ï¿½rbol en postorden, aplicamos la funciï¿½n func, que tiene
 // el prototipo:
 // void func(int&);
 void ArbolABB::PostOrden(void (*func)(int&), Nodo *nodo, bool r)
@@ -187,18 +266,18 @@ void ArbolABB::PostOrden(void (*func)(int&), Nodo *nodo, bool r)
    func(nodo->dato);
 }
 
-// Buscar un valor en el árbol
+// Buscar un valor en el ï¿½rbol
 bool ArbolABB::Buscar(const int dat)
 {
    actual = raiz;
 
-   // Todavía puede aparecer, ya que quedan nodos por mirar
+   // Todavï¿½a puede aparecer, ya que quedan nodos por mirar
    while(!Vacio(actual)) {
       if(dat == actual->dato) return true; // int encontrado
       else if(dat > actual->dato) actual = actual->derecho; // Seguir
       else if(dat < actual->dato) actual = actual->izquierdo;
    }
-   return false; // No está en árbol
+   return false; // No estï¿½ en ï¿½rbol
 }
 
 // Calcular la altura del nodo que contiene el int dat
@@ -207,7 +286,7 @@ int ArbolABB::Altura(const int dat)
    int altura = 0;
    actual = raiz;
 
-   // Todavía puede aparecer, ya que quedan nodos por mirar
+   // Todavï¿½a puede aparecer, ya que quedan nodos por mirar
    while(!Vacio(actual)) {
       if(dat == actual->dato) return altura; // int encontrado
       else {
@@ -216,19 +295,19 @@ int ArbolABB::Altura(const int dat)
          else if(dat < actual->dato) actual = actual->izquierdo;
       }
    }
-   return -1; // No está en árbol
+   return -1; // No estï¿½ en ï¿½rbol
 }
 
-// Contar el número de nodos
+// Contar el nï¿½mero de nodos
 const int ArbolABB::NumeroNodos()
 {
    contador = 0;
 
-   auxContador(raiz); // FUnción auxiliar
+   auxContador(raiz); // FUnciï¿½n auxiliar
    return contador;
 }
 
-// Función auxiliar para contar nodos. Función recursiva de recorrido en
+// Funciï¿½n auxiliar para contar nodos. Funciï¿½n recursiva de recorrido en
 //   preorden, el proceso es aumentar el contador
 void ArbolABB::auxContador(Nodo *nodo)
 {
@@ -238,65 +317,62 @@ void ArbolABB::auxContador(Nodo *nodo)
    if(nodo->derecho)   auxContador(nodo->derecho);
 }
 
-// Calcular la altura del árbol, que es la altura del nodo de mayor altura.
+// Calcular la altura del ï¿½rbol, que es la altura del nodo de mayor altura.
 const int ArbolABB::AlturaArbol()
 {
    altura = 0;
 
-   auxAltura(raiz, 0); // Función auxiliar
+   auxAltura(raiz, 0); // Funciï¿½n auxiliar
    return altura;
 }
 
-// Función auxiliar para calcular altura. Función recursiva de recorrido en
-// postorden, el proceso es actualizar la altura sólo en nodos hojas de mayor
-// altura de la máxima actual
+// Funciï¿½n auxiliar para calcular altura. Funciï¿½n recursiva de recorrido en
+// postorden, el proceso es actualizar la altura sï¿½lo en nodos hojas de mayor
+// altura de la mï¿½xima actual
 void ArbolABB::auxAltura(Nodo *nodo, int a)
 {
    // Recorrido postorden
    if(nodo->izquierdo) auxAltura(nodo->izquierdo, a+1);
    if(nodo->derecho)   auxAltura(nodo->derecho, a+1);
    // Proceso, si es un nodo hoja, y su altura es mayor que la actual del
-   // árbol, actualizamos la altura actual del árbol
+   // ï¿½rbol, actualizamos la altura actual del ï¿½rbol
    if(EsHoja(nodo) && a > altura) altura = a;
 }
 
-// Función de prueba para recorridos del árbol
+// Funciï¿½n de prueba para recorridos del ï¿½rbol
 void Mostrar(int &d)
 {
    cout << d << ",";
 }
 
-int main()
-{
-   // Un árbol de enteros
+void guardarValores(int &d) {
+   lista[k] = d;
+   k++;
+   cout<<"Prueba in orden";
+   cout<<d<<",";
+}
+
+int main(){
+   string cantidadNumeros;
+   double secs;
+   cout << "Â¿Cuantos valores quieres ordenar? (10/100/1,000/10,000/100,000/1'000,000): ";
+   cin >> cantidadNumeros;
+   LeeArchivo(cantidadNumeros);
    ArbolABB ArbolInt;
 
-   // Inserción de nodos en árbol:
-   ArbolInt.Insertar(10);
-   ArbolInt.Insertar(5);
-   ArbolInt.Insertar(12);
-   ArbolInt.Insertar(4);
-   ArbolInt.Insertar(7);
-   ArbolInt.Insertar(3);
-   ArbolInt.Insertar(6);
-   ArbolInt.Insertar(9);
-   ArbolInt.Insertar(8);
-   ArbolInt.Insertar(11);
-   ArbolInt.Insertar(14);
-   ArbolInt.Insertar(13);
-   ArbolInt.Insertar(2);
-   ArbolInt.Insertar(1);
-   ArbolInt.Insertar(15);
-   ArbolInt.Insertar(10);
-   ArbolInt.Insertar(17);
-   ArbolInt.Insertar(18);
-   ArbolInt.Insertar(16);
+   // Inserciï¿½n de nodos en ï¿½rbol:
+   for (int i = 0; i < cn; i++){
+    ArbolInt.Insertar(lista[i]);
+  }
+   
 
    cout << "Altura de arbol " << ArbolInt.AlturaArbol() << endl;
 
-   // Mostrar el árbol en tres ordenes distintos:
+   // Mostrar el ï¿½rbol en tres ordenes distintos:
    cout << "InOrden: ";
-   ArbolInt.InOrden(Mostrar);
+   t_ini = clock();
+   ArbolInt.InOrden(guardarValores);
+   t_ini = clock();
    cout << endl;
    cout << "PreOrden: ";
    ArbolInt.PreOrden(Mostrar);
@@ -332,12 +408,14 @@ int main()
    ArbolInt.InOrden(Mostrar);
    cout << endl;
 
-   // Veamos algunos parámetros
+   // Veamos algunos parï¿½metros
    cout << "N nodos: " << ArbolInt.NumeroNodos() << endl;
    cout << "Altura de 1 " << ArbolInt.Altura(1) << endl;
    cout << "Altura de 10 " << ArbolInt.Altura(10) << endl;
    cout << "Altura de arbol " << ArbolInt.AlturaArbol() << endl;
-
+   secs = (double)(t_fin - t_ini) / (double)CLOCKS_PER_SEC; // determina los milisegundo utilizados
+   printf("%.16g milisegundos\n", secs * 1000.0);           // muestra el tiempo utilizado
+   guardarArchivoOrdenado(cantidadNumeros);
    cin.get();
    return 0;
 }
