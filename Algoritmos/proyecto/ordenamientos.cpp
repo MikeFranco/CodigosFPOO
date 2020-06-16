@@ -407,8 +407,8 @@ void ordenamientoCasilleros()
 void ordenamientoCuentas()
 {
   cout << "Se inicia el ordenamiento por cuentas" << endl;
-  int cantidadNumerosInt = stoi(cantidadNumeros);
-  int mini = 0;
+  int cantidadNumerosInt = atoi(cantidadNumeros.c_str());
+  int mini = lista[0];
   int i, j = 0, counter[cantidadNumerosInt] = {0};
   // Counting the number occurrence of each element.
   for (i = 0; i < cn; i++)
