@@ -40,7 +40,7 @@ void mezclarMitades(int *, int, int, int);
 void ordenamientoArbolBinario();
 void ordenamientoRadix();
 void radixSort(int, int);
-int getMax(int, int);
+int getMax(int);
 
 clock_t t_ini, t_fin;
 
@@ -507,7 +507,7 @@ void mezclarMitades(int *a, int low, int high, int mid)
 void ordenamientoRadix()
 {
   cout << "Se inicia el ordenamiento radix" << endl;
-  int m = getMax(lista, n);
+  int m = getMax(n);
   for (int exp = 1; m / exp > 0; exp *= 10)
     radixSort(n, exp);
 }
@@ -539,11 +539,11 @@ void radixSort(int n, int exp)
         lista[i] = output[i]; 
 }
 
-int getMax(int arr[], int n)
+int getMax(int n)
 {
-  int mx = arr[0];
+  int mx = lista[0];
   for (int i = 1; i < n; i++)
-    if (arr[i] > mx)
-      mx = arr[i];
+    if (lista[i] > mx)
+      mx = lista[i];
   return mx;
 }
