@@ -4,6 +4,8 @@
 #include <fstream>
 #include <time.h>
 #include <string>
+#include <algorithm>
+#include <vector> 
 using namespace std;
 
 struct Entrada
@@ -53,13 +55,13 @@ int main()
   cout << "\t5. Cuentas\n"; //********
   cout << "\t6. Mezcla\n";
   cout << "\t7. Radix\n"; //********
-  cout << "Nota: el ordenamiento de arbol binario está en un archivo diferente";
+  cout << "Nota: el ordenamiento de arbol binario está en un archivo diferente" << endl;
 
   cout << "Ingrese el ordenamiento deseado: ";
   cin >> opcion;
   // se obtiene un string para saber el tipo de ordenamiento que se va a usar
   string nombreOrdenamiento = ordenamientoAElegir(opcion);
-  cout << "Favor de capturar los números sin separadores (, o ')"<<endl;
+  cout << "Favor de capturar los números sin separadores (, o ')" << endl;
   cout << "¿Cuantos valores quieres ordenar? (10/100/1,000/10,000/100,000/1'000,000): ";
   cin >> cantidadNumeros;
 
@@ -407,28 +409,28 @@ void ordenamientoCasilleros()
 void ordenamientoCuentas()
 {
   cout << "Se inicia el ordenamiento por cuentas" << endl;
-  int cantidadNumerosInt = atoi(cantidadNumeros.c_str());
-  int mini = lista[0];
-  int i, j = 0, counter[cantidadNumerosInt] = {0};
-  // Counting the number occurrence of each element.
-  for (i = 0; i < cn; i++)
-    counter[lista[i] - mini]++;
+  vector<int> arr;
+  for(int i = 0; i < sizeof(lista); i++)
+    arr .push_back(lista[i]);
+  int max = *max_element(arr.begin(), arr.end());
+  int min = *min_element(arr.begin(), arr.end());
+  int range = max - min + 1;
 
-  i = 0;
-  // placing the elements back into array.
-  while (i < cantidadNumerosInt)
+  vector<int> count(range), output(arr.size());
+  for (int i = 0; i < arr.size(); i++)
+    count[arr[i] - min]++;
+
+  for (int i = 1; i < count.size(); i++)
+    count[i] += count[i - 1];
+
+  for (int i = arr.size() - 1; i >= 0; i--)
   {
-  flag:
-    lista[j] = mini + i;
-    j++;
-    counter[i]--;
-
-    // place the same element until its counter is zero.
-    if (counter[i] > 0)
-      goto flag;
-
-    i++;
+    output[count[arr[i] - min] - 1] = arr[i];
+    count[arr[i] - min]--;
   }
+
+  for (int i = 0; i < arr.size(); i++)
+    lista[i] = output[i];
 }
 
 void ordenamientoMezcla(int *a, int low, int high)
@@ -494,11 +496,6 @@ void mezclarMitades(int *a, int low, int high, int mid)
   {
     a[i] = temp[i - low];
   }
-}
-
-void ordenamientoArbolBinario()
-{
-  cout << "Se inicia el ordenamiento arbol binario" << endl;
 }
 
 void ordenamientoRadix()
