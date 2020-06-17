@@ -410,29 +410,30 @@ void ordenamientoCuentas()
 {
   cout << "Se inicia el ordenamiento por cuentas" << endl;
   vector<int> arr(1000000);
-  for(int i = 0; i < sizeof(lista); i++)
+  for(int i = 0; i < cn; i++)
     arr[i] = lista[i];
+
   int max = *max_element(arr.begin(), arr.end());
   int min = *min_element(arr.begin(), arr.end());
   int range = max - min + 1;
 
-  vector<int> count(range), output(arr.size());
-  for (int i = 0; i < arr.size(); i++)
+  vector<int> count(range), output(cn-1);
+  for (int i = 0; i < cn-1; i++)
     count[arr[i] - min]++;
 
   for (int i = 1; i < count.size(); i++)
     count[i] += count[i - 1];
 
-  for (int i = arr.size() - 1; i >= 0; i--)
+  for (int i = cn-1; i >= 0; i--)
   {
     output[count[arr[i] - min] - 1] = arr[i];
     count[arr[i] - min]--;
   }
 
-  for (int i = 0; i < arr.size(); i++)
+  for (int i = 0; i < cn-1; i++)
     arr[i] = output[i];
 
-  for (int i = 0; i < arr.size(); i++)
+  for (int i = 0; i < cn-1; i++)
     lista[i] = arr[i];
 }
 
