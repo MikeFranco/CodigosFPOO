@@ -5,7 +5,7 @@
 #include <time.h>
 #include <string>
 #include <algorithm>
-#include <vector> 
+#include <vector>
 using namespace std;
 
 struct Entrada
@@ -39,6 +39,8 @@ void ordenamientoMezcla(int *, int, int);
 void mezclarMitades(int *, int, int, int);
 void ordenamientoArbolBinario();
 void ordenamientoRadix();
+void radixSort(int, int);
+int getMax(int, int);
 
 clock_t t_ini, t_fin;
 
@@ -410,30 +412,30 @@ void ordenamientoCuentas()
 {
   cout << "Se inicia el ordenamiento por cuentas" << endl;
   vector<int> arr(1000000);
-  for(int i = 0; i < cn; i++)
+  for (int i = 0; i < cn; i++)
     arr[i] = lista[i];
 
   int max = *max_element(arr.begin(), arr.end());
   int min = *min_element(arr.begin(), arr.end());
   int range = max - min + 1;
 
-  vector<int> count(range), output(cn-1);
-  for (int i = 0; i < cn-1; i++)
+  vector<int> count(range), output(cn - 1);
+  for (int i = 0; i < cn - 1; i++)
     count[arr[i] - min]++;
 
   for (int i = 1; i < count.size(); i++)
     count[i] += count[i - 1];
 
-  for (int i = cn-1; i >= 0; i--)
+  for (int i = cn - 1; i >= 0; i--)
   {
     output[count[arr[i] - min] - 1] = arr[i];
     count[arr[i] - min]--;
   }
 
-  for (int i = 0; i < cn-1; i++)
+  for (int i = 0; i < cn - 1; i++)
     arr[i] = output[i];
 
-  for (int i = 0; i < cn-1; i++)
+  for (int i = 0; i < cn - 1; i++)
     lista[i] = arr[i];
 }
 
@@ -505,4 +507,43 @@ void mezclarMitades(int *a, int low, int high, int mid)
 void ordenamientoRadix()
 {
   cout << "Se inicia el ordenamiento radix" << endl;
+  int m = getMax(lista, n);
+  for (int exp = 1; m / exp > 0; exp *= 10)
+    radixSort(n, exp);
+}
+
+void radixSort(int n, int exp)
+{
+  int output[n]; // output array 
+    int i, count[10] = {0}; 
+  
+    // Store count of occurrences in count[] 
+    for (i = 0; i < n; i++) 
+        count[ (lista[i]/exp)%10 ]++; 
+  
+    // Change count[i] so that count[i] now contains actual 
+    //  position of this digit in output[] 
+    for (i = 1; i < 10; i++) 
+        count[i] += count[i - 1]; 
+  
+    // Build the output array 
+    for (i = n - 1; i >= 0; i--) 
+    { 
+        output[count[ (lista[i]/exp)%10 ] - 1] = lista[i]; 
+        count[ (lista[i]/exp)%10 ]--; 
+    } 
+  
+    // Copy the output array to lista[], so that lista[] now 
+    // contains sorted numbers according to current digit 
+    for (i = 0; i < n; i++) 
+        lista[i] = output[i]; 
+}
+
+int getMax(int arr[], int n)
+{
+  int mx = arr[0];
+  for (int i = 1; i < n; i++)
+    if (arr[i] > mx)
+      mx = arr[i];
+  return mx;
 }
