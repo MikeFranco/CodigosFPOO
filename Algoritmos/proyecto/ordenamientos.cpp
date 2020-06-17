@@ -409,9 +409,9 @@ void ordenamientoCasilleros()
 void ordenamientoCuentas()
 {
   cout << "Se inicia el ordenamiento por cuentas" << endl;
-  vector<int> arr;
+  vector<int> arr(1000000);
   for(int i = 0; i < sizeof(lista); i++)
-    arr .push_back(lista[i]);
+    arr.push_back(lista[i]);
   int max = *max_element(arr.begin(), arr.end());
   int min = *min_element(arr.begin(), arr.end());
   int range = max - min + 1;
@@ -430,7 +430,9 @@ void ordenamientoCuentas()
   }
 
   for (int i = 0; i < arr.size(); i++)
-    lista[i] = output[i];
+    arr[i] = output[i];
+  for (int i = 0; i < arr.size(); i++)
+    lista[i] = arr[i];
 }
 
 void ordenamientoMezcla(int *a, int low, int high)
