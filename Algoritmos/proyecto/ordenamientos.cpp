@@ -507,18 +507,19 @@ void mezclarMitades(int *a, int low, int high, int mid)
 void ordenamientoRadix()
 {
   cout << "Se inicia el ordenamiento radix" << endl;
-  int m = getMax(cn);
+  int m = getMax(n);
+  int n = sizeof(lista)/sizeof(lista[0]); 
   for (int exp = 1; m / exp > 0; exp *= 10)
-    radixSort(cn, exp);
+    radixSort(n, exp);
 }
 
-void radixSort(int cn, int exp)
+void radixSort(int n, int exp)
 {
-   int output[cn]; // output array 
+   int output[n]; // output array 
     int i, count[10] = {0}; 
   
     // Store count of occurrences in count[] 
-    for (i = 0; i < cn; i++) 
+    for (i = 0; i < n; i++) 
         count[ (lista[i]/exp)%10 ]++; 
   
     // Change count[i] so that count[i] now contains actual 
@@ -527,7 +528,7 @@ void radixSort(int cn, int exp)
         count[i] += count[i - 1]; 
   
     // Build the output array 
-    for (i = cn - 1; i >= 0; i--) 
+    for (i = n - 1; i >= 0; i--) 
     { 
         output[count[ (lista[i]/exp)%10 ] - 1] = lista[i]; 
         count[ (lista[i]/exp)%10 ]--; 
@@ -535,7 +536,7 @@ void radixSort(int cn, int exp)
   
     // Copy the output array to lista[], so that lista[] now 
     // contains sorted numbers according to current digit 
-    for (i = 0; i < cn; i++) 
+    for (i = 0; i < n; i++) 
         lista[i] = output[i]; 
 }
 
