@@ -40,7 +40,7 @@ void mezclarMitades(int *, int, int, int);
 void ordenamientoArbolBinario();
 void ordenamientoRadix();
 void radixSort(int, int);
-int getMax(int);
+int getMax(int, int);
 void countSort(int, int, int);
 
 clock_t t_ini, t_fin;
@@ -510,10 +510,10 @@ void ordenamientoRadix()
   //int lista = [];
   cout << "Se inicia el ordenamiento radix" << endl;
   int n = sizeof(lista) / sizeof(lista[0]);
-  radixsort(lista, n);
+  radixSort(lista, n);
 }
 
-void radixsort(int arr[], int n)
+void radixSort(int arr[], int n)
 {
   // Find the maximum number to know number of digits
   int maxNum = getMax(arr, n);
