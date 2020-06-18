@@ -41,6 +41,7 @@ void ordenamientoArbolBinario();
 void ordenamientoRadix();
 void radixSort(int, int);
 int getMax(int);
+void countSort(int, int, int);
 
 clock_t t_ini, t_fin;
 
@@ -506,45 +507,56 @@ void mezclarMitades(int *a, int low, int high, int mid)
 
 void ordenamientoRadix()
 {
+  //int lista = [];
   cout << "Se inicia el ordenamiento radix" << endl;
-  int m = getMax(n);
-  int n = sizeof(lista)/sizeof(lista[0]); 
-  for (int exp = 1; m / exp > 0; exp *= 10)
-    radixSort(n, exp);
+  int n = sizeof(lista) / sizeof(lista[0]);
+  radixsort(lista, n);
 }
 
-void radixSort(int n, int exp)
+void radixsort(int arr[], int n)
 {
-   int output[n]; // output array 
-    int i, count[10] = {0}; 
-  
-    // Store count of occurrences in count[] 
-    for (i = 0; i < n; i++) 
-        count[ (lista[i]/exp)%10 ]++; 
-  
-    // Change count[i] so that count[i] now contains actual 
-    //  position of this digit in output[] 
-    for (i = 1; i < 10; i++) 
-        count[i] += count[i - 1]; 
-  
-    // Build the output array 
-    for (i = n - 1; i >= 0; i--) 
-    { 
-        output[count[ (lista[i]/exp)%10 ] - 1] = lista[i]; 
-        count[ (lista[i]/exp)%10 ]--; 
-    } 
-  
-    // Copy the output array to lista[], so that lista[] now 
-    // contains sorted numbers according to current digit 
-    for (i = 0; i < n; i++) 
-        lista[i] = output[i]; 
+  // Find the maximum number to know number of digits
+  int maxNum = getMax(arr, n);
+
+  // Do counting sort for every digit. Note that instead
+  // of passing digit number, exp is passed. exp is 10^i
+  // where i is current digit number
+  for (int exp = 1; maxNum / exp > 0; exp *= 10)
+    countSort(arr, n, exp);
 }
 
-int getMax(int n)
+void countSort(int arr[], int n, int exp)
 {
-  int mx = lista[0];
+  int output[n]; // output array
+  int i, count[10] = {0};
+
+  // Store count of occurrences in count[]
+  for (i = 0; i < n; i++)
+    count[(arr[i] / exp) % 10]++;
+
+  // Change count[i] so that count[i] now contains actual
+  //  position of this digit in output[]
+  for (i = 1; i < 10; i++)
+    count[i] += count[i - 1];
+
+  // Build the output array
+  for (i = n - 1; i >= 0; i--)
+  {
+    output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+    count[(arr[i] / exp) % 10]--;
+  }
+
+  // Copy the output array to arr[], so that arr[] now
+  // contains sorted numbers according to current digit
+  for (i = 0; i < n; i++)
+    arr[i] = output[i];
+}
+
+int getMax(int arr[], int n)
+{
+  int mx = arr[0];
   for (int i = 1; i < n; i++)
-    if (lista[i] > mx)
-      mx = lista[i];
+    if (arr[i] > mx)
+      mx = arr[i];
   return mx;
 }
