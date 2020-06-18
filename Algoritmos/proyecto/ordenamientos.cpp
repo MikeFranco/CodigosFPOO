@@ -39,9 +39,8 @@ void ordenamientoMezcla(int *, int, int);
 void mezclarMitades(int *, int, int, int);
 void ordenamientoArbolBinario();
 void ordenamientoRadix();
-void radixSort(int, int);
-int getMax(int, int);
-void countSort(int, int, int);
+int getMax(int);
+void countSort(int, int);
 
 clock_t t_ini, t_fin;
 
@@ -505,34 +504,29 @@ void mezclarMitades(int *a, int low, int high, int mid)
   }
 }
 
+
 void ordenamientoRadix()
 {
-  //int lista = [];
   cout << "Se inicia el ordenamiento radix" << endl;
   int n = sizeof(lista) / sizeof(lista[0]);
-  radixSort(lista, n);
-}
-
-void radixSort(int arr[], int n)
-{
   // Find the maximum number to know number of digits
-  int maxNum = getMax(arr, n);
+  int maxNum = getMax(n);
 
   // Do counting sort for every digit. Note that instead
   // of passing digit number, exp is passed. exp is 10^i
   // where i is current digit number
   for (int exp = 1; maxNum / exp > 0; exp *= 10)
-    countSort(arr, n, exp);
+    countSort(n, exp);
 }
 
-void countSort(int arr[], int n, int exp)
+void countSort(int n, int exp)
 {
   int output[n]; // output array
   int i, count[10] = {0};
 
   // Store count of occurrences in count[]
   for (i = 0; i < n; i++)
-    count[(arr[i] / exp) % 10]++;
+    count[(lista[i] / exp) % 10]++;
 
   // Change count[i] so that count[i] now contains actual
   //  position of this digit in output[]
@@ -542,21 +536,21 @@ void countSort(int arr[], int n, int exp)
   // Build the output array
   for (i = n - 1; i >= 0; i--)
   {
-    output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-    count[(arr[i] / exp) % 10]--;
+    output[count[(lista[i] / exp) % 10] - 1] = lista[i];
+    count[(lista[i] / exp) % 10]--;
   }
 
   // Copy the output array to arr[], so that arr[] now
   // contains sorted numbers according to current digit
   for (i = 0; i < n; i++)
-    arr[i] = output[i];
+    lista[i] = output[i];
 }
 
-int getMax(int arr[], int n)
+int getMax(int n)
 {
-  int mx = arr[0];
+  int mx = lista[0];
   for (int i = 1; i < n; i++)
-    if (arr[i] > mx)
-      mx = arr[i];
+    if (lista[i] > mx)
+      mx = lista[i];
   return mx;
 }
