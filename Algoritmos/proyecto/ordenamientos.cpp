@@ -527,7 +527,7 @@ void radixSort(int cn, int exp)
         count[i] += count[i - 1]; 
   
     // Build the output array 
-    for (i = n - 1; i >= 0; i--) 
+    for (i = cn - 1; i >= 0; i--) 
     { 
         output[count[ (lista[i]/exp)%10 ] - 1] = lista[i]; 
         count[ (lista[i]/exp)%10 ]--; 
