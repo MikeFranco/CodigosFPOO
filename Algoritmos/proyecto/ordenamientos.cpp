@@ -41,9 +41,9 @@ void ordenamientoMezcla(int *, int, int);
 void mezclarMitades(int *, int, int, int);
 void ordenamientoArbolBinario();
 void ordenamientoRadix();
-void radixSort(int*, int);
-int getMax(int*, int);
-void countSort(int*, int, int);
+void radixSort(int);
+int getMax(int);
+void countSort(int, int);
 
 
 clock_t t_ini, t_fin;
@@ -511,52 +511,52 @@ void mezclarMitades(int *a, int low, int high, int mid)
 void ordenamientoRadix()
 {
   cout << "Se inicia el ordenamiento radix" << endl;
-  radixSort(lista, cn);
+  radixSort(cn);
 }
 
 // Get maximum value from array.
-int getMax(int arr[], int n)
+int getMax(int n)
 {
-  int max = arr[0];
+  int max = lista[0];
   for (int i = 1; i < n; i++)
-    if (arr[i] > max)
-      max = arr[i];
+    if (lista[i] > max)
+      max = lista[i];
   return max;
 }
 
 // Sort arr[] of size n using Radix Sort.
-void radixSort(int arr[], int n)
+void radixSort(int n)
 {
   int exp, m;
-  m = getMax(arr, n);
+  m = getMax(n);
 
   // Calling countSort() for digit at (exp)th place in every input.
   for (exp = 1; m / exp > 0; exp *= 10)
-    countSort(arr, n, exp);
+    countSort(n, exp);
 }
 
 // Count sort of arr[].
-void countSort(int arr[], int n, int exp)
+void countSort(int n, int exp)
 {
   // Count[i] array will be counting the number of array values having that 'i' digit at their (exp)th place.
   int output[n], i, count[10] = {0};
 
   // Count the number of times each digit occurred at (exp)th place in every input.
   for (i = 0; i < n; i++)
-    count[(arr[i] / exp) % 10]++;
+    count[(lista[i] / exp) % 10]++;
 
   // Calculating their cumulative count.
   for (i = 1; i < 10; i++)
     count[i] += count[i - 1];
 
-  // Inserting values according to the digit '(arr[i] / exp) % 10' fetched into count[(arr[i] / exp) % 10].
+  // Inserting values according to the digit '(lista[i] / exp) % 10' fetched into count[(lista[i] / exp) % 10].
   for (i = n - 1; i >= 0; i--)
   {
-    output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-    count[(arr[i] / exp) % 10]--;
+    output[count[(lista[i] / exp) % 10] - 1] = lista[i];
+    count[(lista[i] / exp) % 10]--;
   }
 
   // Assigning the result to the arr pointer of main().
   for (i = 0; i < n; i++)
-    arr[i] = output[i];
+    lista[i] = output[i];
 }
