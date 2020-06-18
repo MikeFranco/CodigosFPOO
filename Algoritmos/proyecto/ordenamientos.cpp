@@ -6,6 +6,8 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <math.h>
+#define NUMELTS 1000000
 using namespace std;
 
 struct Entrada
@@ -39,8 +41,7 @@ void ordenamientoMezcla(int *, int, int);
 void mezclarMitades(int *, int, int, int);
 void ordenamientoArbolBinario();
 void ordenamientoRadix();
-int getMax(int);
-void countSort(int, int);
+void radixSort(int);
 
 clock_t t_ini, t_fin;
 
@@ -508,49 +509,86 @@ void mezclarMitades(int *a, int low, int high, int mid)
 void ordenamientoRadix()
 {
   cout << "Se inicia el ordenamiento radix" << endl;
-  int n = sizeof(lista) / sizeof(lista[0]);
-  // Find the maximum number to know number of digits
-  int maxNum = getMax(n);
-
-  // Do counting sort for every digit. Note that instead
-  // of passing digit number, exp is passed. exp is 10^i
-  // where i is current digit number
-  for (int exp = 1; maxNum / exp > 0; exp *= 10)
-    countSort(n, exp);
+  radixSort (n);
 }
 
-void countSort(int n, int exp)
+void radixSort(int n)
 {
-  int output[n]; // output array
-  int i, count[10] = {0};
-
-  // Store count of occurrences in count[]
-  for (i = 0; i < n; i++)
-    count[(lista[i] / exp) % 10]++;
-
-  // Change count[i] so that count[i] now contains actual
-  //  position of this digit in output[]
-  for (i = 1; i < 10; i++)
-    count[i] += count[i - 1];
-
-  // Build the output array
-  for (i = n - 1; i >= 0; i--)
-  {
-    output[count[(lista[i] / exp) % 10] - 1] = lista[i];
-    count[(lista[i] / exp) % 10]--;
-  }
-
-  // Copy the output array to arr[], so that arr[] now
-  // contains sorted numbers according to current digit
-  for (i = 0; i < n; i++)
-    lista[i] = output[i];
-}
-
-int getMax(int n)
-{
-  int mx = lista[0];
-  for (int i = 1; i < n; i++)
-    if (lista[i] > mx)
-      mx = lista[i];
-  return mx;
-}
+    int front[10], rear[10];
+ 
+    struct {
+        int info;
+        int next;
+    } node[NUMELTS];
+     
+    int exp, first, i, j, k, p, q, y;
+  
+  /* Inicializar una lista vinculada */
+    for (i = 0; i < n-1; i++)
+    {
+        node[i].info = lista[i];
+        node[i].next = i+1;
+    } /* fin del for */
+     
+    node[n-1].info = lista[n-1];
+    node[n-1].next = -1;
+    first = 0; /* first es la cabeza de la lista vinculada */
+     
+    for (k = 1; k < 5; k++) 
+    {
+    /* Suponer que tenemos números de cuatro dígitos */
+        for (i = 0; i < 10; i++)
+        {
+        /*Inicializar colas */
+            rear[i] = -1;
+            front[i] = -1;
+        } /*fin del for */
+ 
+        /* Procesar cada elemento en la lista */
+        while (first != -1)
+        {
+            p = first;
+            first = node[first].next;
+            y = node[p].info;
+            /* Extraer el kâsimo dÁgito */
+            exp = pow(10, k-1); /* elevar 10 a la (k-1)ésima potencia */
+            j = (y/exp) % 10;
+            /* Insertar y en queue[j] */
+            q = rear[j];
+            if (q == -1)
+                front[j] = p;
+            else
+                node[q].next = p;
+            rear[j] = p;
+        } /*fin del while */
+      
+        /* En este punto, cada registro está en su cola basándose en el dígito k
+           Ahora formar una lista única de todos los elementos de la cola.
+           Encontrar el primer elemento. */
+        for (j = 0; j < 10 && front[j] == -1; j++);
+            ;
+        first = front[j];
+      
+        /* Vincular las colas restantes */
+        while (j <= 9)
+        {   /* Verificar si se ha terminado */
+            /*Encontrar el elemento siguiente */
+            for (i = j+1; i < 10 && front[i] == -1; i++);
+                ;
+            if (i <= 9)
+            {
+                p = i;
+                node[rear[j]].next = front[i];
+            } /* fin del if */
+            j = i;
+        } /* fin del while */
+        node[rear[p]].next = -1;
+    } /* fin del for */
+  
+    /* Copiar de regreso al archivo original */
+    for (i = 0; i < n; i++) 
+    {
+            lista[i] = node[first].info;
+            first = node[first].next;
+    } /*fin del for */
+} /* fin de radixsort*/
