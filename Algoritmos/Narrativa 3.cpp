@@ -7,7 +7,7 @@ int main()
 	
     int arrayLength, number_to_found, inicio=0;
     cout<<"¿Cuantos numeros quieres ingresar?: "; cin>>arrayLength;
-	cout<<"¿Que numero quieres encontrar?: "; cin>>number_to_found;
+
     int final = arrayLength-1;
     int pivote = (inicio+final)/2;
     int numbers[arrayLength];
@@ -18,6 +18,7 @@ int main()
 		cout<<"Captura el numero para la posicion: "<<i+1<<" "; cin>>number;
     	numbers[i] = number;
 	}
+	cout<<"¿Que numero quieres encontrar?: "; cin>>number_to_found;
     while(inicio <= final){
     	
     	if(numbers[pivote] < number_to_found)
