@@ -91,14 +91,19 @@ int main(){
 	cin>>ini;
 	cout<<"\nIngrese el fin: ";
 	cin>>fin;
-	if(!(ini < 0) && !(ini > 32)){
+	if(ini < 0) cout<<"ini menor a 0";
+	if(ini > 32) cout<<"ini mayor a 32";
+	if(fin < 0) cout<<"fin menor a 0";
+	if(fin > 32) cout<<"fin mayor a 32";
+	exit(1);
+	/* if(!(ini < 0) && !(ini > 32)){
 		cout<<"Los valores de inicio deben de ser positivos y menores a 32"<<endl;
 		exit(1);
 	}
 	if(!(fin < 0) && !(fin > 32)){
 		cout<<"Los valores de fin deben de ser positivos y menores a 32"<<endl;
 		exit(1);
-	}
+	} */
 	
 	cout<<"\nLa ruta menos viable: \n";
 
