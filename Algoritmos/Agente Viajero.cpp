@@ -77,6 +77,8 @@ int main(){
 	cout<<"Los estados de la republica se enumeran del 1 (CDMX) al 32 en las primeras dos columnas  \n";
 	cout<<"Para simplificar el problema inicial propusimos que el la CDMX tuviera carreteras directas a cada estado \n";
 	cout<<"Las ultimas dos columnas representan los km y el precio de las casetas \n";
+	cout<<"Las aristas son bidireccionales";
+
 	for(filas=0;filas<62;filas++){
 		for(columnas=0;columnas<4;columnas++){
 			cout<< tablaRelaciones[filas][columnas]<<"\t";
@@ -89,6 +91,14 @@ int main(){
 	cin>>ini;
 	cout<<"\nIngrese el fin: ";
 	cin>>fin;
+	if(!(ini < 0) && !(ini > 32)){
+		cout<<"Los valores deben de ser positivos y menores a 32"<<endl;
+		exit(1);
+	}
+	if(fin < 0 || fin > 32){
+		cout<<"Los valores deben de ser positivos y menores a 32"<<endl;
+		exit(1);
+	}
 	
 	cout<<"\nLa ruta menos viable: \n";
 
