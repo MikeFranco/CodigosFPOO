@@ -92,11 +92,11 @@ int main(){
 	cout<<"\nIngrese el fin: ";
 	cin>>fin;
 	if(!(ini < 0) && !(ini > 32)){
-		cout<<"Los valores deben de ser positivos y menores a 32"<<endl;
+		cout<<"Los valores de inicio deben de ser positivos y menores a 32"<<endl;
 		exit(1);
 	}
-	if(fin < 0 || fin > 32){
-		cout<<"Los valores deben de ser positivos y menores a 32"<<endl;
+	if(!(fin < 0) && !(fin > 32)){
+		cout<<"Los valores de fin deben de ser positivos y menores a 32"<<endl;
 		exit(1);
 	}
 	
