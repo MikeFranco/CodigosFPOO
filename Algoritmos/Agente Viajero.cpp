@@ -355,10 +355,73 @@ int main()
 					cout << endl;
 				}
 			}
-		} else if(fin == 1 && ini > fin){
-				cout<<"aquí va lo bidireccional";
-		} else {
-			cout<<"no seas panochon, no hay ruta disponible"
+		}
+		else if (fin == 1 && ini > fin)
+		{
+			cout << "\nLa ruta menos viable: \n";
+
+			for (filas = 0; filas < 62; filas++)
+			{
+				if (tablaRelaciones[filas][1] == ini && tablaRelaciones[filas][0] == fin)
+				{
+					for (columnas = 0; columnas < 4; columnas++)
+					{
+						cout << tablaRelaciones[filas][columnas] << "    ";
+					}
+					bandera = 1;
+					filas = 62;
+				}
+			}
+
+			if (bandera == 0)
+			{
+				cout << "No existe ruta";
+			}
+			cout << endl;
+
+			cout << "\nLa ruta OPTIMA: \n";
+
+			for (filas = 0; filas < 62; filas++)
+			{
+				if (tablaRelaciones[filas][1] == ini && tablaRelaciones[filas][0] == fin)
+				{
+
+					x = filas;
+					for (x2 = filas + 1; x2 < 62; x2++)
+					{
+						if (tablaRelaciones[x2][1] == ini && tablaRelaciones[x2][0] == fin)
+						{
+							x = x2;
+							for (columnas = 0; columnas < 4; columnas++)
+							{
+								cout << tablaRelaciones[x][columnas] << "    ";
+							}
+						}
+						else
+						{
+							filas = 62;
+						}
+					}
+				}
+			}
+
+			cout << "\nTodas las rutas son: \n";
+			//Todas las Rutas
+			for (filas = 0; filas < 62; filas++)
+			{
+				if (tablaRelaciones[filas][1] == ini && tablaRelaciones[filas][0] == fin)
+				{
+					for (columnas = 0; columnas < 4; columnas++)
+					{
+						cout << tablaRelaciones[filas][columnas] << "    ";
+					}
+					cout << endl;
+				}
+			}
+		}
+		else
+		{
+			cout << "no seas panochon, no hay ruta disponible";
 		}
 	}
 
