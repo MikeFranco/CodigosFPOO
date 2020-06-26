@@ -421,7 +421,7 @@ int main()
 		}
 		else
 		{
-			cout << "no seas panochon, no hay ruta disponible";
+			cout << "No hay ruta disponible desde "<<ini<<" hasta "<<fin;
 		}
 	}
 
